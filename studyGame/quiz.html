@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTRO 100G Study Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #e94560;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #a0a0a0;
+            font-size: 1.1rem;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Start Screen */
+        .start-screen {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .start-screen h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #e94560;
+        }
+
+        .start-screen p {
+            margin-bottom: 15px;
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+
+        .category-select {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .category-select h3 {
+            margin-bottom: 15px;
+            color: #e94560;
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 12px 20px;
+            border: 2px solid #e94560;
+            background: transparent;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .category-btn:hover {
+            background: #e94560;
+            transform: translateY(-2px);
+        }
+
+        .category-btn.selected {
+            background: #e94560;
+            box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
+        }
+
+        .start-btn {
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            background: #e94560;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            background: #ff6b6b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        .start-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Quiz Screen */
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+        }
+
+        .score {
+            font-size: 1.1rem;
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .question-category {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #e94560;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-align: left;
+            color: #fff;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #e94560;
+        }
+
+        .option.selected {
+            background: rgba(233, 69, 96, 0.3);
+            border-color: #e94560;
+        }
+
+        .option.correct {
+            background: rgba(46, 204, 113, 0.3);
+            border-color: #2ecc71;
+        }
+
+        .option.incorrect {
+            background: rgba(231, 76, 60, 0.3);
+            border-color: #e74c3c;
+        }
+
+        .feedback {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            border-left: 4px solid #2ecc71;
+        }
+
+        .feedback.incorrect {
+            border-left: 4px solid #e74c3c;
+        }
+
+        .feedback h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .feedback.correct h4 {
+            color: #2ecc71;
+        }
+
+        .feedback.incorrect h4 {
+            color: #e74c3c;
+        }
+
+        .feedback p {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .next-btn, .submit-btn {
+            padding: 12px 35px;
+            background: #e94560;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .next-btn:hover, .submit-btn:hover {
+            background: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .next-btn:disabled, .submit-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Results Screen */
+        .results-screen {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .results-screen h2 {
+            font-size: 2.5rem;
+            color: #e94560;
+            margin-bottom: 10px;
+        }
+
+        .final-score {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #fff;
+            margin: 20px 0;
+        }
+
+        .final-score span {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .stat-card h4 {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            font-size: 1.8rem;
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        .category-breakdown {
+            text-align: left;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .category-breakdown h3 {
+            color: #e94560;
+            margin-bottom: 15px;
+        }
+
+        .category-result {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-result:last-child {
+            border-bottom: none;
+        }
+
+        .restart-btn {
+            padding: 15px 50px;
+            font-size: 1.1rem;
+            background: #e94560;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .restart-btn:hover {
+            background: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .review-btn {
+            padding: 15px 50px;
+            font-size: 1.1rem;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #e94560;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .review-btn:hover {
+            background: #e94560;
+            transform: translateY(-2px);
+        }
+
+        /* Review Screen */
+        .review-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .review-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .review-item.correct {
+            border-left: 4px solid #2ecc71;
+        }
+
+        .review-item.incorrect {
+            border-left: 4px solid #e74c3c;
+        }
+
+        .review-item h4 {
+            margin-bottom: 10px;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+
+        .review-item .question {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .review-item .answer {
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .review-item .answer.correct {
+            color: #2ecc71;
+        }
+
+        .review-item .answer.incorrect {
+            color: #e74c3c;
+        }
+
+        .review-item .explanation {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0a0a0;
+            font-size: 0.95rem;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e94560;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff6b6b;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+            }
+
+            .final-score {
+                font-size: 3rem;
+            }
+
+            .quiz-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .next-btn, .submit-btn, .restart-btn, .review-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ASTRO 100G Study Quiz</h1>
+            <p>University of Auckland - Astronomy Study Tool</p>
+        </header>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="start-screen">
+                <h2>Welcome to Your Study Quiz!</h2>
+                <p>Test your knowledge of astronomy concepts covered in ASTRO 100G.</p>
+                <p>Select one or more categories to study, then click "Start Quiz" to begin.</p>
+
+                <div class="category-select">
+                    <h3>Select Categories:</h3>
+                    <div class="category-buttons">
+                        <button class="category-btn" data-category="solar-system">Solar System & Distances</button>
+                        <button class="category-btn" data-category="moon-phases">Moon & Phases</button>
+                        <button class="category-btn" data-category="matariki">Matariki & Calendars</button>
+                        <button class="category-btn" data-category="telescopes">Telescopes & Instruments</button>
+                        <button class="category-btn" data-category="planetary-motion">Planetary Motion</button>
+                        <button class="category-btn" data-category="parallax">Parallax & Distance</button>
+                        <button class="category-btn" data-category="light-spectrum">Light & Spectrum</button>
+                        <button class="category-btn" data-category="stars-magnitude">Stars & Magnitude</button>
+                    </div>
+                </div>
+
+                <button class="start-btn" id="start-btn" disabled>Select at least one category</button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <span class="progress">Question <span id="current-q">1</span> of <span id="total-q">10</span></span>
+                <span class="score">Score: <span id="current-score">0</span></span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+
+            <div class="question-card">
+                <span class="question-category" id="question-category">Category</span>
+                <p class="question-text" id="question-text">Question goes here...</p>
+                <div class="options" id="options-container">
+                    <!-- Options will be inserted here -->
+                </div>
+
+                <div class="feedback" id="feedback">
+                    <h4 id="feedback-title"></h4>
+                    <p id="feedback-text"></p>
+                </div>
+            </div>
+
+            <div class="quiz-controls">
+                <button class="next-btn" id="next-btn" disabled>Next Question</button>
+                <button class="submit-btn" id="submit-btn" style="display: none;">Finish Quiz</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="results-screen">
+                <h2>Quiz Complete!</h2>
+                <div class="final-score">
+                    <span id="final-score-num">0</span><span>/</span><span id="final-score-total">0</span>
+                </div>
+                <p id="final-percentage">0%</p>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <h4>Correct</h4>
+                        <div class="value" id="correct-count" style="color: #2ecc71;">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Incorrect</h4>
+                        <div class="value" id="incorrect-count" style="color: #e74c3c;">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Accuracy</h4>
+                        <div class="value" id="accuracy">0%</div>
+                    </div>
+                </div>
+
+                <div class="category-breakdown" id="category-breakdown">
+                    <h3>Category Breakdown</h3>
+                    <div id="category-results">
+                        <!-- Category results inserted here -->
+                    </div>
+                </div>
+
+                <button class="restart-btn" id="restart-btn">Study Again</button>
+                <button class="review-btn" id="review-btn">Review Answers</button>
+            </div>
+        </div>
+
+        <!-- Review Screen -->
+        <div id="review-screen" class="screen">
+            <div class="results-screen">
+                <h2>Review Your Answers</h2>
+                <p style="margin-bottom: 20px; color: #a0a0a0;">Learn from your mistakes!</p>
+
+                <div class="review-list" id="review-list">
+                    <!-- Review items inserted here -->
+                </div>
+
+                <button class="restart-btn" id="review-restart-btn">Back to Results</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Questions Database - Based on ASTRO 100G Course Content
+        const questionsDatabase = {
+            "solar-system": [
+                {
+                    question: "Imagine you are an astronaut on the surface of the moon. How would the Earth appear to you?",
+                    options: [
+                        "It would vary from full to crescent during the course of an Earth day.",
+                        "It would always appear to be approximately full.",
+                        "It would always appear to be a crescent.",
+                        "It would vary from full to crescent during the course of an Earth month.",
+                        "None of the above."
+                    ],
+                    correct: 3,
+                    explanation: "From the Moon, Earth goes through phases just like the Moon does from Earth. Since the Moon is tidally locked to Earth (same side always faces Earth), an astronaut on the near side would see Earth go through a complete cycle of phases over one lunar month (about 29.5 days)."
+                },
+                {
+                    question: "It is about 5 light-hours to Pluto. The Voyager spacecraft are about 1 light-day from Earth. The nearest star is roughly 4 light-years away. How much further would Voyager need to travel to reach the nearest star?",
+                    options: [
+                        "150 times",
+                        "2500 times",
+                        "2000 times",
+                        "1000 times",
+                        "1500 times"
+                    ],
+                    correct: 4,
+                    explanation: "4 light-years = 4 × 365 × 24 = 35,040 light-hours. Voyager is at 24 light-hours (1 light-day). 35,040 / 24 ≈ 1,460, which is approximately 1500 times."
+                },
+                {
+                    question: "Which kind of object is the largest?",
+                    options: [
+                        "Solar system",
+                        "Galaxy",
+                        "Constellation",
+                        "Planet",
+                        "Star"
+                    ],
+                    correct: 1,
+                    explanation: "A galaxy is by far the largest. A galaxy contains billions of stars, many with their own solar systems. Constellations are patterns we see from Earth, not physical objects. Our Milky Way galaxy is about 100,000 light-years across."
+                },
+                {
+                    question: "The distance between the Earth and the Moon is roughly a _____, distances between the inner planets are roughly _____, distances to the outer planets are roughly light-hours, and distances to the nearest stars are roughly light-years.",
+                    options: [
+                        "light minutes / light seconds",
+                        "light seconds / light hours",
+                        "light seconds / light minutes",
+                        "light hours / light minutes",
+                        "light days / light hours"
+                    ],
+                    correct: 2,
+                    explanation: "Earth-Moon distance is about 1.3 light-seconds. Distances between inner planets (like Earth to Venus or Mars) are measured in light-minutes (3-12 light-minutes typically). Outer planets are light-hours away, and nearest stars are light-years away."
+                }
+            ],
+            "moon-phases": [
+                {
+                    question: "Choose the most accurate answer: A crescent moon can be visible in the night sky...",
+                    options: [
+                        "At any time of the night",
+                        "Shortly before sunrise or shortly after sunset",
+                        "Shortly after sunset",
+                        "Shortly before sunrise",
+                        "At midnight"
+                    ],
+                    correct: 1,
+                    explanation: "A crescent moon is always relatively close to the Sun in the sky, so it can only be seen shortly after sunset (waxing crescent in the western sky) or shortly before sunrise (waning crescent in the eastern sky). It cannot be seen at midnight because that would require it to be opposite the Sun."
+                },
+                {
+                    question: "Why do we always see the same face of the Moon from Earth?",
+                    options: [
+                        "The Moon does not rotate on its axis",
+                        "The Moon rotates once per day",
+                        "The Moon rotates once per orbit around Earth (tidal locking)",
+                        "The Moon's rotation is random",
+                        "Earth's gravity prevents the Moon from rotating"
+                    ],
+                    correct: 2,
+                    explanation: "The Moon IS rotating - it rotates exactly once per orbit around Earth. This is called 'tidal locking' or 'synchronous rotation.' This is why we always see the same face. The far side of the Moon is not 'dark' - it gets just as much sunlight as the near side."
+                },
+                {
+                    question: "If you observe a full moon tonight, approximately when will you see the next new moon?",
+                    options: [
+                        "About 7 days",
+                        "About 14 days",
+                        "About 21 days",
+                        "About 28 days",
+                        "About 3.5 days"
+                    ],
+                    correct: 1,
+                    explanation: "The lunar cycle is about 29.5 days. From full moon to new moon is half a cycle, so about 14-15 days. The phases go: Full → Waning Gibbous → Third Quarter → Waning Crescent → New."
+                }
+            ],
+            "matariki": [
+                {
+                    question: "In what Western calendar month(s) does the modern Matariki public holiday take place?",
+                    options: [
+                        "June or July",
+                        "July",
+                        "June",
+                        "May or June",
+                        "May, June or July"
+                    ],
+                    correct: 0,
+                    explanation: "Matariki is celebrated when the Pleiades star cluster (Matariki) first rises before sunrise, which occurs in late June or early July in New Zealand. The exact date varies each year based on the lunar calendar."
+                },
+                {
+                    question: "Within which Western constellation is the Matariki cluster located?",
+                    options: [
+                        "Taurus",
+                        "Orion",
+                        "Eridanus",
+                        "Aries",
+                        "Southern Cross"
+                    ],
+                    correct: 0,
+                    explanation: "The Matariki cluster (Pleiades or M45) is located in the constellation Taurus. It's one of the nearest star clusters to Earth at about 440 light-years away and is visible to the naked eye as a small group of stars."
+                },
+                {
+                    question: "Why do we need leap years?",
+                    options: [
+                        "The time taken for the Earth to go round the Sun is not an exact number of days.",
+                        "The time taken for the Moon to go round the Earth is not an exact number of days.",
+                        "The time taken for the Earth to go round the Sun is not an exact number of months.",
+                        "Because the speed at which the Earth rotates on its axis is slowing down.",
+                        "Because the speed at which the Earth goes round the Sun is slowing down."
+                    ],
+                    correct: 0,
+                    explanation: "A year (Earth's orbit around the Sun) takes approximately 365.25 days. Without leap years, our calendar would drift by about 6 hours each year, and after 100 years, seasons would be off by about 25 days. We add a leap day every 4 years to compensate."
+                }
+            ],
+            "telescopes": [
+                {
+                    question: "Which of these statements about telescopes and famous scientists is the most accurate?",
+                    options: [
+                        "Galileo used a refractor, Newton used a reflector.",
+                        "Galileo used a reflector, Newton used a refractor.",
+                        "Newton and Galileo both used refracting telescopes.",
+                        "Newton and Galileo both used reflecting telescopes.",
+                        "Newton used a reflecting telescope, but the detailed form of Galileo's telescope is unknown."
+                    ],
+                    correct: 0,
+                    explanation: "Galileo used a refracting telescope (using lenses) for his astronomical discoveries in 1609-1610. Newton invented the reflecting telescope (using mirrors) in 1668 to avoid chromatic aberration problems of refractors."
+                },
+                {
+                    question: "The mirrors of a reflecting telescope must always be made of transparent material?",
+                    options: [
+                        "True",
+                        "False"
+                    ],
+                    correct: 1,
+                    explanation: "False! Telescope mirrors are made of opaque materials (typically glass coated with aluminum or silver). The mirror reflects light from its front surface - light doesn't pass through it. Transparent materials are used for lenses in refracting telescopes, not mirrors."
+                },
+                {
+                    question: "Which of the following things was NOT discovered by Galileo?",
+                    options: [
+                        "The planet Uranus",
+                        "The craters on the moon",
+                        "The phases of Venus",
+                        "The existence of many stars in the Milky Way",
+                        "The moons of Jupiter"
+                    ],
+                    correct: 0,
+                    explanation: "Galileo did NOT discover Uranus - it was discovered by William Herschel in 1781, long after Galileo's time. Galileo discovered: Jupiter's four largest moons (1610), Moon's craters and mountains, phases of Venus, sunspots, and resolved the Milky Way into individual stars."
+                },
+                {
+                    question: "The Hubble Space Telescope is roughly 2.5 metres in diameter. Each Keck telescope is roughly 10 metres in diameter. How many times more effective is a Keck telescope than Hubble at gathering light?",
+                    options: [
+                        "16",
+                        "4",
+                        "8",
+                        "10",
+                        "32"
+                    ],
+                    correct: 0,
+                    explanation: "Light gathering power is proportional to the AREA of the mirror, which goes as the square of the diameter. Keck (10m) vs Hubble (2.5m): (10/2.5)² = 4² = 16. So Keck gathers 16 times more light than Hubble."
+                },
+                {
+                    question: "The human eye has a resolution of 30 arc seconds with a 6mm pupil. Estimate the resolution of a telescope with a 60mm lens.",
+                    options: [
+                        "3 arc seconds",
+                        "30 arc seconds",
+                        "0.3 arc seconds",
+                        "6 arc seconds",
+                        "1 arc second"
+                    ],
+                    correct: 0,
+                    explanation: "Resolution is inversely proportional to aperture diameter. If the telescope is 10× larger (60mm vs 6mm), the resolution is 10× better: 30 arc seconds ÷ 10 = 3 arc seconds."
+                },
+                {
+                    question: "The best telescopes can resolve 2000 times smaller than the human eye. The eye can see about 100 km craters on the Moon. How would you respond to someone claiming Moon landings were a hoax because we can't see landing sites from Earth?",
+                    options: [
+                        "The telescopes aren't powerful enough to resolve objects that small",
+                        "Atmospheric distortion prevents clear imaging",
+                        "The landing sites were intentionally hidden",
+                        "We actually CAN see the landing sites with modern telescopes",
+                        "The Moon's surface changes too quickly"
+                    ],
+                    correct: 0,
+                    explanation: "Even our best Earth telescopes can only resolve objects about 50 meters across on the Moon. The Apollo landing sites and equipment are much smaller than this, so they cannot be resolved from Earth. This is a limitation of physics, not evidence of a hoax. Lunar orbiters CAN photograph them from close up."
+                }
+            ],
+            "planetary-motion": [
+                {
+                    question: "Imagine you are an astronomer on Mars. In which of the following places would you be able to see the planet Earth in the Martian sky? (Mark all that apply - select the option that describes ALL valid locations)",
+                    options: [
+                        "As a 'star' close to the setting sun in the evening sky AND as a 'star' close to the rising sun in the morning sky",
+                        "As a 'star' high overhead at midnight",
+                        "As a second sun in the daytime sky",
+                        "Only as a 'star' close to the setting sun in the evening sky",
+                        "Only as a 'star' close to the rising sun in the morning sky"
+                    ],
+                    correct: 0,
+                    explanation: "From Mars, Earth is an inner planet (closer to the Sun than Mars). Like Mercury and Venus appear from Earth, Earth would only be visible near the Sun - either as an evening 'star' after sunset OR as a morning 'star' before sunrise. It could NEVER be overhead at midnight from Mars (that position is only for outer planets)."
+                },
+                {
+                    question: "Would you expect an astronomer on Venus to see the Earth undergo 'retrograde' motion in the sky?",
+                    options: [
+                        "Yes, regularly",
+                        "No, never",
+                        "Only during transits of Venus",
+                        "Only when the Earth is eclipsed by the Moon",
+                        "Only during transits of Mercury"
+                    ],
+                    correct: 0,
+                    explanation: "Yes! From Venus, Earth is an OUTER planet. Just as Mars appears to go backward (retrograde) from Earth when we pass it, Earth would appear to go through retrograde motion from Venus whenever Venus passes Earth in its orbit. This happens regularly."
+                },
+                {
+                    question: "Who is known as the 'last great naked eye astronomer'?",
+                    options: [
+                        "Tycho Brahe",
+                        "Copernicus",
+                        "Kepler",
+                        "Galileo",
+                        "Newton"
+                    ],
+                    correct: 0,
+                    explanation: "Tycho Brahe (1546-1601) made the most accurate astronomical observations ever recorded before the invention of the telescope. His precise measurements of planetary positions were later used by Kepler to discover the laws of planetary motion."
+                },
+                {
+                    question: "Who is most closely associated with the realization that planets move in ellipses around the Sun?",
+                    options: [
+                        "Kepler",
+                        "Newton",
+                        "Copernicus",
+                        "Galileo",
+                        "Tycho Brahe"
+                    ],
+                    correct: 0,
+                    explanation: "Johannes Kepler discovered that planets move in elliptical orbits (not circular) around the Sun. This was his First Law of Planetary Motion, published in 1609, based on analyzing Tycho Brahe's precise observations of Mars."
+                },
+                {
+                    question: "What causes the retrograde motion of Mars as seen from Earth?",
+                    options: [
+                        "Mars actually stops and reverses direction in its orbit",
+                        "Earth passes Mars in its orbit, making Mars appear to move backward",
+                        "The gravitational pull of Jupiter affects Mars's orbit",
+                        "Atmospheric distortion makes Mars appear to move erratically",
+                        "Mars's elliptical orbit causes it to speed up and slow down"
+                    ],
+                    correct: 1,
+                    explanation: "Retrograde motion is an optical illusion caused by Earth passing Mars. Since Earth orbits faster (closer to Sun), we periodically 'lap' Mars. During this passing, Mars appears to move backward against the background stars, similar to how a faster car makes a slower car appear to move backward."
+                }
+            ],
+            "parallax": [
+                {
+                    question: "A star at 1 parsec shows a parallax of 1 arcsecond. What parallax would we observe for a star at 100 parsecs?",
+                    options: [
+                        "0.01 arcseconds",
+                        "0.1 arcseconds",
+                        "1 arcsecond",
+                        "10 arcseconds",
+                        "100 arcseconds"
+                    ],
+                    correct: 0,
+                    explanation: "Parallax is INVERSELY proportional to distance. If distance increases by 100×, parallax decreases by 100×. So 1 arcsecond ÷ 100 = 0.01 arcseconds. This is why measuring parallax for distant stars is so challenging!"
+                },
+                {
+                    question: "How would observations of parallax for an astronomer on Venus differ from those made on Earth?",
+                    options: [
+                        "The parallax of distant stars would be smaller",
+                        "The parallax of distant stars would be larger",
+                        "The parallax of distant stars would be similar",
+                        "The change in parallax would be different for each star",
+                        "No parallax would be visible"
+                    ],
+                    correct: 0,
+                    explanation: "Parallax depends on the baseline of observation. Earth uses a 2 AU baseline (opposite sides of Earth's orbit). Venus, being closer to the Sun, has a smaller orbit and thus a smaller baseline, resulting in smaller parallax angles for the same stars."
+                },
+                {
+                    question: "To the nearest hundred years, how long ago was stellar parallax first accurately measured?",
+                    options: [
+                        "200 years",
+                        "100 years",
+                        "300 years",
+                        "400 years",
+                        "500 years"
+                    ],
+                    correct: 0,
+                    explanation: "Stellar parallax was first successfully measured by Friedrich Bessel in 1838 (about 200 years ago). He measured the parallax of the star 61 Cygni. This was one of the most important astronomical achievements because it proved Earth orbits the Sun and gave the first direct measurement of stellar distances."
+                }
+            ],
+            "light-spectrum": [
+                {
+                    question: "Red light has a lower frequency than blue light. This tells us that...",
+                    options: [
+                        "Red light has a longer wavelength than blue light",
+                        "Red light has a shorter wavelength than blue light",
+                        "Red light moves more quickly than blue light",
+                        "Red light moves more slowly than blue light",
+                        "Red light is harder to produce than blue light"
+                    ],
+                    correct: 0,
+                    explanation: "Frequency and wavelength are inversely related (c = λν). Lower frequency means longer wavelength. Red light has a wavelength of about 700nm while blue is about 450nm. All electromagnetic radiation travels at the same speed (c) in a vacuum."
+                },
+                {
+                    question: "Which of the following kinds of electromagnetic radiation was discovered before the 1860s?",
+                    options: [
+                        "Infrared",
+                        "Gamma ray",
+                        "X-ray",
+                        "Radio",
+                        "Microwave"
+                    ],
+                    correct: 0,
+                    explanation: "Infrared was discovered by William Herschel in 1800, when he discovered heat beyond the red end of the visible spectrum. X-rays (1895), gamma rays (1900), and radio waves from space (1930s) were all discovered later."
+                },
+                {
+                    question: "What source of radio waves was detected by Karl Jansky in the 1930s?",
+                    options: [
+                        "The centre of the Milky Way galaxy",
+                        "The Sun",
+                        "The Earth's atmosphere",
+                        "Inside the solar system",
+                        "A nebula in space"
+                    ],
+                    correct: 0,
+                    explanation: "Karl Jansky discovered radio waves coming from the center of the Milky Way galaxy in 1932. This discovery founded the field of radio astronomy. He was originally investigating static that interfered with transatlantic radio communications."
+                },
+                {
+                    question: "Which type of telescope is most commonly collected into a network to improve its resolution?",
+                    options: [
+                        "Radio",
+                        "Optical",
+                        "X-ray",
+                        "Gamma-ray",
+                        "Infrared"
+                    ],
+                    correct: 0,
+                    explanation: "Radio telescopes are most commonly linked in interferometer arrays (like the VLA, ALMA, or the Event Horizon Telescope). Radio waves have long wavelengths, requiring huge baselines between telescopes to achieve good resolution. The technique is called interferometry."
+                },
+                {
+                    question: "Stellar spectra are typically...",
+                    options: [
+                        "Continuum emission with super-imposed absorption lines",
+                        "Continuum emission only",
+                        "Continuum emission with super-imposed emission lines",
+                        "Many emission lines that combine to form a rainbow",
+                        "Combinations of absorption and emission lines"
+                    ],
+                    correct: 0,
+                    explanation: "Most stars show a continuous spectrum (blackbody curve) with dark absorption lines superimposed. These absorption lines are caused by cooler gases in the star's outer atmosphere absorbing specific wavelengths. The pattern of lines reveals the star's composition and temperature."
+                },
+                {
+                    question: "Which of these statements about infrared radiation is TRUE? (Select the FALSE one)",
+                    options: [
+                        "The Hubble Space Telescope primarily detects infrared light",
+                        "Infrared radiation passes through dust between stars more easily than visible light",
+                        "The James Webb Space Telescope primarily detects infrared light",
+                        "Longer wavelength infrared radiation is absorbed by Earth's atmosphere",
+                        "A very hot blackbody gives off less infrared radiation than a cold one"
+                    ],
+                    correct: 0,
+                    explanation: "Hubble primarily detects visible and ultraviolet light, NOT infrared. JWST is the infrared observatory. Infrared DOES penetrate dust better than visible light. Long-wave infrared IS absorbed by Earth's atmosphere (requiring space telescopes). Hot objects emit LESS of their radiation as infrared compared to cold objects."
+                }
+            ],
+            "stars-magnitude": [
+                {
+                    question: "A sixth magnitude star is 100 times fainter than a first magnitude star. How many times fainter is an eleventh magnitude star relative to a first magnitude star?",
+                    options: [
+                        "10,000",
+                        "1,000",
+                        "10",
+                        "100,000",
+                        "1,000,000"
+                    ],
+                    correct: 0,
+                    explanation: "Each magnitude step is a factor of about 2.512 in brightness. 5 magnitude steps = 100×. From magnitude 1 to 11 is 10 steps = two sets of 5 steps = 100 × 100 = 10,000. So an 11th magnitude star is 10,000 times fainter than a 1st magnitude star."
+                },
+                {
+                    question: "The Sun has an absolute magnitude of 4.83. A human being 10 parsecs from the Sun would...",
+                    options: [
+                        "Just be able to see it with the naked eye",
+                        "Be able to see it with a small telescope",
+                        "Need a huge telescope to see it",
+                        "See it as one of the brightest stars in the sky",
+                        "See it as bright as the full moon"
+                    ],
+                    correct: 0,
+                    explanation: "Absolute magnitude is defined as the brightness at 10 parsecs. The Sun's absolute magnitude of 4.83 means at 10 parsecs, it would appear as a magnitude 4.83 star - just visible to the naked eye under good conditions (the limit is about magnitude 6)."
+                },
+                {
+                    question: "Explain why the colours of stars tell us their temperatures, but the colours of Post-It notes do NOT.",
+                    options: [
+                        "Stars emit light due to heat; Post-It notes only reflect light",
+                        "Stars are much larger than Post-It notes",
+                        "Post-It notes are too cool to emit thermal radiation",
+                        "Stars are blackbodies; Post-It notes are not",
+                        "Both A and D are correct"
+                    ],
+                    correct: 4,
+                    explanation: "Stars emit their own light due to their temperature (they approximate blackbodies). Hotter stars emit more blue light, cooler stars emit more red light. Post-It notes don't emit light - they reflect ambient light and absorb other colors. Their color tells us about pigments, not temperature."
+                },
+                {
+                    question: "Could you ever detect a star with the same colors as green or pink Post-It notes?",
+                    options: [
+                        "No - stars follow the blackbody curve and don't appear green or pink",
+                        "Yes - there are green and pink stars",
+                        "Only with special filters",
+                        "Only if the star is very hot",
+                        "Only if the star is very cool"
+                    ],
+                    correct: 0,
+                    explanation: "Stars follow the blackbody radiation curve. As they get hotter, they go: red → orange → yellow → white → blue-white. There's no temperature that produces a pure green or pink peak. Stars that peak in green still emit enough red and blue to appear white to our eyes."
+                }
+            ]
+        };
+
+        // Game State
+        let selectedCategories = [];
+        let quizQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        let categoryStats = {};
+
+        // DOM Elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const reviewScreen = document.getElementById('review-screen');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const startBtn = document.getElementById('start-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const optionsContainer = document.getElementById('options-container');
+        const feedback = document.getElementById('feedback');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackText = document.getElementById('feedback-text');
+        const questionText = document.getElementById('question-text');
+        const questionCategory = document.getElementById('question-category');
+        const currentQ = document.getElementById('current-q');
+        const totalQ = document.getElementById('total-q');
+        const currentScore = document.getElementById('current-score');
+        const progressFill = document.getElementById('progress-fill');
+
+        // Category display names
+        const categoryNames = {
+            "solar-system": "Solar System & Distances",
+            "moon-phases": "Moon & Phases",
+            "matariki": "Matariki & Calendars",
+            "telescopes": "Telescopes & Instruments",
+            "planetary-motion": "Planetary Motion",
+            "parallax": "Parallax & Distance",
+            "light-spectrum": "Light & Spectrum",
+            "stars-magnitude": "Stars & Magnitude"
+        };
+
+        // Initialize category buttons
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                btn.classList.toggle('selected');
+
+                if (selectedCategories.includes(category)) {
+                    selectedCategories = selectedCategories.filter(c => c !== category);
+                } else {
+                    selectedCategories.push(category);
+                }
+
+                updateStartButton();
+            });
+        });
+
+        function updateStartButton() {
+            if (selectedCategories.length === 0) {
+                startBtn.disabled = true;
+                startBtn.textContent = 'Select at least one category';
+            } else if (selectedCategories.length === 1) {
+                startBtn.disabled = false;
+                startBtn.textContent = `Start Quiz (${selectedCategories.length} category)`;
+            } else {
+                startBtn.disabled = false;
+                startBtn.textContent = `Start Quiz (${selectedCategories.length} categories)`;
+            }
+        }
+
+        // Start quiz
+        startBtn.addEventListener('click', () => {
+            // Gather questions from selected categories
+            quizQuestions = [];
+            categoryStats = {};
+
+            selectedCategories.forEach(category => {
+                const categoryQuestions = questionsDatabase[category] || [];
+                // Shuffle and select up to 5 questions per category
+                const shuffled = [...categoryQuestions].sort(() => Math.random() - 0.5);
+                const selected = shuffled.slice(0, Math.min(5, shuffled.length));
+
+                selected.forEach(q => {
+                    quizQuestions.push({
+                        ...q,
+                        category: category
+                    });
+                    categoryStats[category] = { correct: 0, total: 0 };
+                });
+            });
+
+            // Shuffle all questions
+            quizQuestions.sort(() => Math.random() - 0.5);
+
+            if (quizQuestions.length === 0) {
+                alert('No questions available for selected categories!');
+                return;
+            }
+
+            // Reset game state
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+
+            // Show quiz screen
+            startScreen.classList.remove('active');
+            quizScreen.classList.add('active');
+
+            showQuestion();
+        });
+
+        function showQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+
+            // Update UI
+            currentQ.textContent = currentQuestionIndex + 1;
+            totalQ.textContent = quizQuestions.length;
+            currentScore.textContent = score;
+            progressFill.style.width = `${((currentQuestionIndex) / quizQuestions.length) * 100}%`;
+
+            questionCategory.textContent = categoryNames[question.category] || question.category;
+            questionCategory.style.background = getCategoryColor(question.category);
+            questionText.textContent = question.question;
+
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+            feedback.classList.remove('show', 'correct', 'incorrect');
+            nextBtn.disabled = true;
+
+            // Create option buttons
+            question.options.forEach((option, index) => {
+                const optionBtn = document.createElement('button');
+                optionBtn.className = 'option';
+                optionBtn.textContent = option;
+                optionBtn.addEventListener('click', () => selectOption(index, optionBtn));
+                optionsContainer.appendChild(optionBtn);
+            });
+
+            // Show submit button on last question
+            if (currentQuestionIndex === quizQuestions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        function getCategoryColor(category) {
+            const colors = {
+                "solar-system": "#e94560",
+                "moon-phases": "#9b59b6",
+                "matariki": "#1abc9c",
+                "telescopes": "#3498db",
+                "planetary-motion": "#e67e22",
+                "parallax": "#2ecc71",
+                "light-spectrum": "#f39c12",
+                "stars-magnitude": "#e74c3c"
+            };
+            return colors[category] || "#e94560";
+        }
+
+        function selectOption(selectedIndex, selectedBtn) {
+            // Remove previous selection
+            const options = optionsContainer.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+
+            // Add selection to clicked option
+            selectedBtn.classList.add('selected');
+
+            // Disable all options
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            // Check answer
+            const question = quizQuestions[currentQuestionIndex];
+            const isCorrect = selectedIndex === question.correct;
+
+            // Mark correct/incorrect
+            options[question.correct].classList.add('correct');
+            if (!isCorrect) {
+                selectedBtn.classList.add('incorrect');
+                selectedBtn.classList.remove('selected');
+            }
+
+            // Update score and stats
+            categoryStats[question.category].total++;
+            if (isCorrect) {
+                score++;
+                currentScore.textContent = score;
+                categoryStats[question.category].correct++;
+            }
+
+            // Save user answer
+            userAnswers.push({
+                question: question,
+                selected: selectedIndex,
+                correct: question.correct,
+                isCorrect: isCorrect
+            });
+
+            // Show feedback
+            feedback.classList.remove('correct', 'incorrect');
+            feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+
+            if (isCorrect) {
+                feedbackTitle.textContent = 'Correct!';
+            } else {
+                feedbackTitle.textContent = 'Incorrect';
+            }
+
+            feedbackText.textContent = question.explanation;
+
+            // Enable next button
+            nextBtn.disabled = false;
+            if (currentQuestionIndex === quizQuestions.length - 1) {
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Next button
+        nextBtn.addEventListener('click', () => {
+            currentQuestionIndex++;
+            showQuestion();
+        });
+
+        // Submit button (finish quiz)
+        submitBtn.addEventListener('click', () => {
+            showResults();
+        });
+
+        function showResults() {
+            quizScreen.classList.remove('active');
+            resultsScreen.classList.add('active');
+
+            const percentage = Math.round((score / quizQuestions.length) * 100);
+
+            document.getElementById('final-score-num').textContent = score;
+            document.getElementById('final-score-total').textContent = quizQuestions.length;
+            document.getElementById('final-percentage').textContent = `${percentage}%`;
+            document.getElementById('correct-count').textContent = score;
+            document.getElementById('incorrect-count').textContent = quizQuestions.length - score;
+            document.getElementById('accuracy').textContent = `${percentage}%`;
+
+            // Category breakdown
+            const categoryResults = document.getElementById('category-results');
+            categoryResults.innerHTML = '';
+
+            selectedCategories.forEach(category => {
+                const stats = categoryStats[category];
+                if (stats && stats.total > 0) {
+                    const catPercentage = Math.round((stats.correct / stats.total) * 100);
+                    const resultDiv = document.createElement('div');
+                    resultDiv.className = 'category-result';
+                    resultDiv.innerHTML = `
+                        <span>${categoryNames[category]}</span>
+                        <span>${stats.correct}/${stats.total} (${catPercentage}%)</span>
+                    `;
+                    categoryResults.appendChild(resultDiv);
+                }
+            });
+        }
+
+        // Review answers
+        document.getElementById('review-btn').addEventListener('click', () => {
+            resultsScreen.classList.remove('active');
+            reviewScreen.classList.add('active');
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+
+            userAnswers.forEach((answer, index) => {
+                const reviewItem = document.createElement('div');
+                reviewItem.className = `review-item ${answer.isCorrect ? 'correct' : 'incorrect'}`;
+
+                const question = answer.question;
+                reviewItem.innerHTML = `
+                    <h4>Question ${index + 1} - ${categoryNames[question.category]}</h4>
+                    <p class="question">${question.options[answer.selected]}</p>
+                    <div class="answer ${answer.isCorrect ? 'correct' : 'incorrect'}">
+                        ${answer.isCorrect ? '✓ Your answer was correct' : '✗ Your answer was incorrect'}
+                    </div>
+                    ${!answer.isCorrect ? `<div class="answer correct">✓ Correct answer: ${question.options[question.correct]}</div>` : ''}
+                    <div class="explanation">
+                        <strong>Explanation:</strong> ${question.explanation}
+                    </div>
+                `;
+
+                reviewList.appendChild(reviewItem);
+            });
+        });
+
+        // Restart buttons
+        document.getElementById('restart-btn').addEventListener('click', () => {
+            resultsScreen.classList.remove('active');
+            startScreen.classList.add('active');
+        });
+
+        document.getElementById('review-restart-btn').addEventListener('click', () => {
+            reviewScreen.classList.remove('active');
+            resultsScreen.classList.add('active');
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (quizScreen.classList.contains('active')) {
+                if (e.key === 'Enter' && !nextBtn.disabled) {
+                    if (currentQuestionIndex === quizQuestions.length - 1 && submitBtn.style.display !== 'none') {
+                        submitBtn.click();
+                    } else {
+                        nextBtn.click();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
