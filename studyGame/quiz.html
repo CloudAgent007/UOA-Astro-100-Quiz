@@ -17,18 +17,25 @@
             min-height: 100vh;
             padding: 20px;
             color: #fff;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 50%, #d0d8e0 100%);
+            color: #1a1a2e;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         header {
             text-align: center;
-            padding: 30px 0;
+            padding: 30px 20px;
             border-bottom: 2px solid #e94560;
             margin-bottom: 30px;
+            position: relative;
         }
 
         header h1 {
@@ -37,9 +44,41 @@
             margin-bottom: 10px;
         }
 
+        body.light-mode header h1 {
+            color: #c0354c;
+        }
+
         header p {
             color: #a0a0a0;
             font-size: 1.1rem;
+        }
+
+        body.light-mode header p {
+            color: #555;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(233, 69, 96, 0.2);
+            border: 2px solid #e94560;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        body.light-mode .theme-toggle {
+            background: rgba(233, 69, 96, 0.3);
+            color: #1a1a2e;
+        }
+
+        .theme-toggle:hover {
+            background: #e94560;
+            transform: translateY(-2px);
         }
 
         .screen {
@@ -59,6 +98,10 @@
             backdrop-filter: blur(10px);
         }
 
+        body.light-mode .start-screen {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
         .start-screen h2 {
             font-size: 2rem;
             margin-bottom: 20px;
@@ -71,11 +114,19 @@
             line-height: 1.6;
         }
 
+        body.light-mode .start-screen p {
+            color: #444;
+        }
+
         .category-select {
             margin: 30px 0;
             padding: 20px;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
+        }
+
+        body.light-mode .category-select {
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .category-select h3 {
@@ -101,6 +152,10 @@
             font-size: 0.95rem;
         }
 
+        body.light-mode .category-btn {
+            color: #1a1a2e;
+        }
+
         .category-btn:hover {
             background: #e94560;
             transform: translateY(-2px);
@@ -109,6 +164,136 @@
         .category-btn.selected {
             background: #e94560;
             box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
+        }
+
+        .mode-select {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        body.light-mode .mode-select {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .mode-select h3 {
+            margin-bottom: 15px;
+            color: #e94560;
+        }
+
+        .mode-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .mode-btn {
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            background: transparent;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        body.light-mode .mode-btn {
+            color: #1a1a2e;
+        }
+
+        .mode-btn:hover {
+            background: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .mode-btn.selected {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.6);
+            border-color: transparent;
+        }
+
+        .quiz-mode-btn {
+            padding: 12px 24px;
+            border: 2px solid #e94560;
+            background: transparent;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        body.light-mode .quiz-mode-btn {
+            color: #1a1a2e;
+        }
+
+        .quiz-mode-btn:hover {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+        }
+
+        .quiz-mode-btn.selected {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.6);
+            border-color: transparent;
+        }
+
+        .question-count-select {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            display: none;
+        }
+
+        body.light-mode .question-count-select {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .question-count-select.visible {
+            display: block;
+        }
+
+        .question-count-select h3 {
+            margin-bottom: 15px;
+            color: #e94560;
+        }
+
+        .count-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .count-btn {
+            padding: 10px 20px;
+            border: 2px solid #2ecc71;
+            background: transparent;
+            color: #fff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        body.light-mode .count-btn {
+            color: #1a1a2e;
+        }
+
+        .count-btn:hover {
+            background: #2ecc71;
+            transform: translateY(-2px);
+        }
+
+        .count-btn.selected {
+            background: #2ecc71;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
         }
 
         .start-btn {
@@ -147,9 +332,17 @@
             margin-bottom: 20px;
         }
 
+        body.light-mode .quiz-header {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
         .progress {
             font-size: 1.1rem;
             color: #a0a0a0;
+        }
+
+        body.light-mode .progress {
+            color: #555;
         }
 
         .score {
@@ -164,6 +357,10 @@
             border-radius: 4px;
             margin-bottom: 25px;
             overflow: hidden;
+        }
+
+        body.light-mode .progress-bar {
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .progress-fill {
@@ -181,6 +378,10 @@
             backdrop-filter: blur(10px);
         }
 
+        body.light-mode .question-card {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
         .question-category {
             display: inline-block;
             padding: 5px 12px;
@@ -188,6 +389,16 @@
             border-radius: 15px;
             font-size: 0.85rem;
             margin-bottom: 15px;
+        }
+
+        .question-type {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #3498db;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            margin-left: 10px;
         }
 
         .question-text {
@@ -214,9 +425,18 @@
             color: #fff;
         }
 
+        body.light-mode .option {
+            background: rgba(0, 0, 0, 0.05);
+            color: #1a1a2e;
+        }
+
         .option:hover {
             background: rgba(255, 255, 255, 0.15);
             border-color: #e94560;
+        }
+
+        body.light-mode .option:hover {
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .option.selected {
@@ -240,6 +460,10 @@
             border-radius: 10px;
             margin-top: 20px;
             display: none;
+        }
+
+        body.light-mode .feedback {
+            background: rgba(255, 255, 255, 0.6);
         }
 
         .feedback.show {
@@ -272,6 +496,10 @@
             line-height: 1.6;
         }
 
+        body.light-mode .feedback p {
+            color: #444;
+        }
+
         .quiz-controls {
             display: flex;
             justify-content: space-between;
@@ -300,12 +528,140 @@
             transform: none;
         }
 
+        /* Written Answer Section */
+        .written-answer-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 10px;
+            border: 2px dashed #3498db;
+        }
+
+        body.light-mode .written-answer-section {
+            background: rgba(52, 152, 219, 0.15);
+        }
+
+        .written-answer-section h4 {
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .written-answer-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        body.light-mode .written-answer-textarea {
+            background: rgba(255, 255, 255, 0.8);
+            color: #1a1a2e;
+        }
+
+        .written-answer-textarea::placeholder {
+            color: #888;
+        }
+
+        body.light-mode .written-answer-textarea::placeholder {
+            color: #666;
+        }
+
+        .submit-written-btn {
+            padding: 12px 30px;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .submit-written-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .submit-written-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .ai-feedback {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #2ecc71;
+            display: none;
+        }
+
+        .ai-feedback.show {
+            display: block;
+        }
+
+        .ai-feedback h5 {
+            color: #2ecc71;
+            margin-bottom: 10px;
+        }
+
+        .ai-feedback p {
+            color: #c0c0c0;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        body.light-mode .ai-feedback p {
+            color: #444;
+        }
+
+        .ai-feedback .score-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .ai-feedback .score-item {
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        body.light-mode .ai-feedback .score-item {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .ai-feedback .score-item .label {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .ai-feedback .score-item .value {
+            font-size: 1.2rem;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
         /* Results Screen */
         .results-screen {
             text-align: center;
             padding: 40px 20px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
+        }
+
+        body.light-mode .results-screen {
+            background: rgba(255, 255, 255, 0.7);
         }
 
         .results-screen h2 {
@@ -321,9 +677,17 @@
             margin: 20px 0;
         }
 
+        body.light-mode .final-score {
+            color: #1a1a2e;
+        }
+
         .final-score span {
             font-size: 1.5rem;
             color: #a0a0a0;
+        }
+
+        body.light-mode .final-score span {
+            color: #666;
         }
 
         .stats {
@@ -339,10 +703,18 @@
             border-radius: 10px;
         }
 
+        body.light-mode .stat-card {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
         .stat-card h4 {
             color: #a0a0a0;
             font-size: 0.9rem;
             margin-bottom: 10px;
+        }
+
+        body.light-mode .stat-card h4 {
+            color: #666;
         }
 
         .stat-card .value {
@@ -359,6 +731,10 @@
             border-radius: 10px;
         }
 
+        body.light-mode .category-breakdown {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
         .category-breakdown h3 {
             color: #e94560;
             margin-bottom: 15px;
@@ -369,6 +745,10 @@
             justify-content: space-between;
             padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .category-result {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .category-result:last-child {
@@ -404,6 +784,10 @@
             margin: 10px;
         }
 
+        body.light-mode .review-btn {
+            color: #1a1a2e;
+        }
+
         .review-btn:hover {
             background: #e94560;
             transform: translateY(-2px);
@@ -423,6 +807,10 @@
             margin-bottom: 15px;
         }
 
+        body.light-mode .review-item {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
         .review-item.correct {
             border-left: 4px solid #2ecc71;
         }
@@ -437,6 +825,10 @@
             font-size: 0.9rem;
         }
 
+        body.light-mode .review-item h4 {
+            color: #666;
+        }
+
         .review-item .question {
             margin-bottom: 15px;
             line-height: 1.5;
@@ -447,6 +839,10 @@
             background: rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             margin-bottom: 5px;
+        }
+
+        body.light-mode .review-item .answer {
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .review-item .answer.correct {
@@ -465,6 +861,36 @@
             font-size: 0.95rem;
         }
 
+        body.light-mode .review-item .explanation {
+            color: #666;
+            border-top-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Written Answer Review */
+        .written-review-item {
+            padding: 20px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+        }
+
+        body.light-mode .written-review-item {
+            background: rgba(52, 152, 219, 0.15);
+        }
+
+        .written-review-item .your-answer {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        body.light-mode .written-review-item .your-answer {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
         /* Scrollbar styling */
         ::-webkit-scrollbar {
             width: 8px;
@@ -473,6 +899,10 @@
         ::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 4px;
+        }
+
+        body.light-mode ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
         }
 
         ::-webkit-scrollbar-thumb {
@@ -488,6 +918,11 @@
         @media (max-width: 600px) {
             header h1 {
                 font-size: 1.8rem;
+            }
+
+            .theme-toggle {
+                position: static;
+                margin-top: 15px;
             }
 
             .question-text {
@@ -514,6 +949,7 @@
         <header>
             <h1>ASTRO 100G Study Quiz</h1>
             <p>University of Auckland - Astronomy Study Tool</p>
+            <button class="theme-toggle" id="theme-toggle">Light Mode</button>
         </header>
 
         <!-- Start Screen -->
@@ -521,7 +957,7 @@
             <div class="start-screen">
                 <h2>Welcome to Your Study Quiz!</h2>
                 <p>Test your knowledge of astronomy concepts covered in ASTRO 100G.</p>
-                <p>Select one or more categories to study, then click "Start Quiz" to begin.</p>
+                <p>Select categories and question modes to customize your study session.</p>
 
                 <div class="category-select">
                     <h3>Select Categories:</h3>
@@ -534,6 +970,35 @@
                         <button class="category-btn" data-category="parallax">Parallax & Distance</button>
                         <button class="category-btn" data-category="light-spectrum">Light & Spectrum</button>
                         <button class="category-btn" data-category="stars-magnitude">Stars & Magnitude</button>
+                    </div>
+                </div>
+
+                <div class="mode-select">
+                    <h3>Question Type:</h3>
+                    <div class="mode-buttons">
+                        <button class="mode-btn selected" data-mode="multiple-choice">Multiple Choice (Single)</button>
+                        <button class="mode-btn" data-mode="multi-select">Multiple Select</button>
+                        <button class="mode-btn" data-mode="written">Written Practice (AI)</button>
+                        <button class="mode-btn" data-mode="mixed">Mixed Mode</button>
+                    </div>
+                </div>
+
+                <div class="question-count-select" id="random-count-select">
+                    <h3>Number of Questions:</h3>
+                    <div class="count-buttons">
+                        <button class="count-btn" data-count="5">5</button>
+                        <button class="count-btn" data-count="10">10</button>
+                        <button class="count-btn" data-count="20">20</button>
+                        <button class="count-btn" data-count="30">30</button>
+                        <button class="count-btn" data-count="50">50</button>
+                    </div>
+                </div>
+
+                <div class="mode-select">
+                    <h3>Quiz Mode:</h3>
+                    <div class="mode-buttons">
+                        <button class="quiz-mode-btn selected" data-quiz-mode="standard">Standard (5 per category)</button>
+                        <button class="quiz-mode-btn" data-quiz-mode="random">Random Selection</button>
                     </div>
                 </div>
 
@@ -553,9 +1018,22 @@
 
             <div class="question-card">
                 <span class="question-category" id="question-category">Category</span>
+                <span class="question-type" id="question-type">Multiple Choice</span>
                 <p class="question-text" id="question-text">Question goes here...</p>
                 <div class="options" id="options-container">
                     <!-- Options will be inserted here -->
+                </div>
+
+                <!-- Written Answer Section -->
+                <div class="written-answer-section" id="written-answer-section" style="display: none;">
+                    <h4>Write your answer below:</h4>
+                    <textarea class="written-answer-textarea" id="written-answer-textarea" placeholder="Type your answer here. Be as detailed as possible, explaining your reasoning and including relevant concepts..."></textarea>
+                    <button class="submit-written-btn" id="submit-written-btn">Submit Answer for AI Review</button>
+
+                    <div class="ai-feedback" id="ai-feedback">
+                        <h5>AI Feedback</h5>
+                        <div id="ai-feedback-content"></div>
+                    </div>
                 </div>
 
                 <div class="feedback" id="feedback">
@@ -623,428 +1101,1043 @@
 
     <script>
         // Quiz Questions Database - Based on ASTRO 100G Course Content
+        // Includes: Single choice, Multi-select, and Written practice questions
         const questionsDatabase = {
-            "solar-system": [
-                {
-                    question: "Imagine you are an astronaut on the surface of the moon. How would the Earth appear to you?",
-                    options: [
-                        "It would vary from full to crescent during the course of an Earth day.",
-                        "It would always appear to be approximately full.",
-                        "It would always appear to be a crescent.",
-                        "It would vary from full to crescent during the course of an Earth month.",
-                        "None of the above."
-                    ],
-                    correct: 3,
-                    explanation: "From the Moon, Earth goes through phases just like the Moon does from Earth. Since the Moon is tidally locked to Earth (same side always faces Earth), an astronaut on the near side would see Earth go through a complete cycle of phases over one lunar month (about 29.5 days)."
-                },
-                {
-                    question: "It is about 5 light-hours to Pluto. The Voyager spacecraft are about 1 light-day from Earth. The nearest star is roughly 4 light-years away. How much further would Voyager need to travel to reach the nearest star?",
-                    options: [
-                        "150 times",
-                        "2500 times",
-                        "2000 times",
-                        "1000 times",
-                        "1500 times"
-                    ],
-                    correct: 4,
-                    explanation: "4 light-years = 4 × 365 × 24 = 35,040 light-hours. Voyager is at 24 light-hours (1 light-day). 35,040 / 24 ≈ 1,460, which is approximately 1500 times."
-                },
-                {
-                    question: "Which kind of object is the largest?",
-                    options: [
-                        "Solar system",
-                        "Galaxy",
-                        "Constellation",
-                        "Planet",
-                        "Star"
-                    ],
-                    correct: 1,
-                    explanation: "A galaxy is by far the largest. A galaxy contains billions of stars, many with their own solar systems. Constellations are patterns we see from Earth, not physical objects. Our Milky Way galaxy is about 100,000 light-years across."
-                },
-                {
-                    question: "The distance between the Earth and the Moon is roughly a _____, distances between the inner planets are roughly _____, distances to the outer planets are roughly light-hours, and distances to the nearest stars are roughly light-years.",
-                    options: [
-                        "light minutes / light seconds",
-                        "light seconds / light hours",
-                        "light seconds / light minutes",
-                        "light hours / light minutes",
-                        "light days / light hours"
-                    ],
-                    correct: 2,
-                    explanation: "Earth-Moon distance is about 1.3 light-seconds. Distances between inner planets (like Earth to Venus or Mars) are measured in light-minutes (3-12 light-minutes typically). Outer planets are light-hours away, and nearest stars are light-years away."
-                }
-            ],
-            "moon-phases": [
-                {
-                    question: "Choose the most accurate answer: A crescent moon can be visible in the night sky...",
-                    options: [
-                        "At any time of the night",
-                        "Shortly before sunrise or shortly after sunset",
-                        "Shortly after sunset",
-                        "Shortly before sunrise",
-                        "At midnight"
-                    ],
-                    correct: 1,
-                    explanation: "A crescent moon is always relatively close to the Sun in the sky, so it can only be seen shortly after sunset (waxing crescent in the western sky) or shortly before sunrise (waning crescent in the eastern sky). It cannot be seen at midnight because that would require it to be opposite the Sun."
-                },
-                {
-                    question: "Why do we always see the same face of the Moon from Earth?",
-                    options: [
-                        "The Moon does not rotate on its axis",
-                        "The Moon rotates once per day",
-                        "The Moon rotates once per orbit around Earth (tidal locking)",
-                        "The Moon's rotation is random",
-                        "Earth's gravity prevents the Moon from rotating"
-                    ],
-                    correct: 2,
-                    explanation: "The Moon IS rotating - it rotates exactly once per orbit around Earth. This is called 'tidal locking' or 'synchronous rotation.' This is why we always see the same face. The far side of the Moon is not 'dark' - it gets just as much sunlight as the near side."
-                },
-                {
-                    question: "If you observe a full moon tonight, approximately when will you see the next new moon?",
-                    options: [
-                        "About 7 days",
-                        "About 14 days",
-                        "About 21 days",
-                        "About 28 days",
-                        "About 3.5 days"
-                    ],
-                    correct: 1,
-                    explanation: "The lunar cycle is about 29.5 days. From full moon to new moon is half a cycle, so about 14-15 days. The phases go: Full → Waning Gibbous → Third Quarter → Waning Crescent → New."
-                }
-            ],
-            "matariki": [
-                {
-                    question: "In what Western calendar month(s) does the modern Matariki public holiday take place?",
-                    options: [
-                        "June or July",
-                        "July",
-                        "June",
-                        "May or June",
-                        "May, June or July"
-                    ],
-                    correct: 0,
-                    explanation: "Matariki is celebrated when the Pleiades star cluster (Matariki) first rises before sunrise, which occurs in late June or early July in New Zealand. The exact date varies each year based on the lunar calendar."
-                },
-                {
-                    question: "Within which Western constellation is the Matariki cluster located?",
-                    options: [
-                        "Taurus",
-                        "Orion",
-                        "Eridanus",
-                        "Aries",
-                        "Southern Cross"
-                    ],
-                    correct: 0,
-                    explanation: "The Matariki cluster (Pleiades or M45) is located in the constellation Taurus. It's one of the nearest star clusters to Earth at about 440 light-years away and is visible to the naked eye as a small group of stars."
-                },
-                {
-                    question: "Why do we need leap years?",
-                    options: [
-                        "The time taken for the Earth to go round the Sun is not an exact number of days.",
-                        "The time taken for the Moon to go round the Earth is not an exact number of days.",
-                        "The time taken for the Earth to go round the Sun is not an exact number of months.",
-                        "Because the speed at which the Earth rotates on its axis is slowing down.",
-                        "Because the speed at which the Earth goes round the Sun is slowing down."
-                    ],
-                    correct: 0,
-                    explanation: "A year (Earth's orbit around the Sun) takes approximately 365.25 days. Without leap years, our calendar would drift by about 6 hours each year, and after 100 years, seasons would be off by about 25 days. We add a leap day every 4 years to compensate."
-                }
-            ],
-            "telescopes": [
-                {
-                    question: "Which of these statements about telescopes and famous scientists is the most accurate?",
-                    options: [
-                        "Galileo used a refractor, Newton used a reflector.",
-                        "Galileo used a reflector, Newton used a refractor.",
-                        "Newton and Galileo both used refracting telescopes.",
-                        "Newton and Galileo both used reflecting telescopes.",
-                        "Newton used a reflecting telescope, but the detailed form of Galileo's telescope is unknown."
-                    ],
-                    correct: 0,
-                    explanation: "Galileo used a refracting telescope (using lenses) for his astronomical discoveries in 1609-1610. Newton invented the reflecting telescope (using mirrors) in 1668 to avoid chromatic aberration problems of refractors."
-                },
-                {
-                    question: "The mirrors of a reflecting telescope must always be made of transparent material?",
-                    options: [
-                        "True",
-                        "False"
-                    ],
-                    correct: 1,
-                    explanation: "False! Telescope mirrors are made of opaque materials (typically glass coated with aluminum or silver). The mirror reflects light from its front surface - light doesn't pass through it. Transparent materials are used for lenses in refracting telescopes, not mirrors."
-                },
-                {
-                    question: "Which of the following things was NOT discovered by Galileo?",
-                    options: [
-                        "The planet Uranus",
-                        "The craters on the moon",
-                        "The phases of Venus",
-                        "The existence of many stars in the Milky Way",
-                        "The moons of Jupiter"
-                    ],
-                    correct: 0,
-                    explanation: "Galileo did NOT discover Uranus - it was discovered by William Herschel in 1781, long after Galileo's time. Galileo discovered: Jupiter's four largest moons (1610), Moon's craters and mountains, phases of Venus, sunspots, and resolved the Milky Way into individual stars."
-                },
-                {
-                    question: "The Hubble Space Telescope is roughly 2.5 metres in diameter. Each Keck telescope is roughly 10 metres in diameter. How many times more effective is a Keck telescope than Hubble at gathering light?",
-                    options: [
-                        "16",
-                        "4",
-                        "8",
-                        "10",
-                        "32"
-                    ],
-                    correct: 0,
-                    explanation: "Light gathering power is proportional to the AREA of the mirror, which goes as the square of the diameter. Keck (10m) vs Hubble (2.5m): (10/2.5)² = 4² = 16. So Keck gathers 16 times more light than Hubble."
-                },
-                {
-                    question: "The human eye has a resolution of 30 arc seconds with a 6mm pupil. Estimate the resolution of a telescope with a 60mm lens.",
-                    options: [
-                        "3 arc seconds",
-                        "30 arc seconds",
-                        "0.3 arc seconds",
-                        "6 arc seconds",
-                        "1 arc second"
-                    ],
-                    correct: 0,
-                    explanation: "Resolution is inversely proportional to aperture diameter. If the telescope is 10× larger (60mm vs 6mm), the resolution is 10× better: 30 arc seconds ÷ 10 = 3 arc seconds."
-                },
-                {
-                    question: "The best telescopes can resolve 2000 times smaller than the human eye. The eye can see about 100 km craters on the Moon. How would you respond to someone claiming Moon landings were a hoax because we can't see landing sites from Earth?",
-                    options: [
-                        "The telescopes aren't powerful enough to resolve objects that small",
-                        "Atmospheric distortion prevents clear imaging",
-                        "The landing sites were intentionally hidden",
-                        "We actually CAN see the landing sites with modern telescopes",
-                        "The Moon's surface changes too quickly"
-                    ],
-                    correct: 0,
-                    explanation: "Even our best Earth telescopes can only resolve objects about 50 meters across on the Moon. The Apollo landing sites and equipment are much smaller than this, so they cannot be resolved from Earth. This is a limitation of physics, not evidence of a hoax. Lunar orbiters CAN photograph them from close up."
-                }
-            ],
-            "planetary-motion": [
-                {
-                    question: "Imagine you are an astronomer on Mars. In which of the following places would you be able to see the planet Earth in the Martian sky? (Mark all that apply - select the option that describes ALL valid locations)",
-                    options: [
-                        "As a 'star' close to the setting sun in the evening sky AND as a 'star' close to the rising sun in the morning sky",
-                        "As a 'star' high overhead at midnight",
-                        "As a second sun in the daytime sky",
-                        "Only as a 'star' close to the setting sun in the evening sky",
-                        "Only as a 'star' close to the rising sun in the morning sky"
-                    ],
-                    correct: 0,
-                    explanation: "From Mars, Earth is an inner planet (closer to the Sun than Mars). Like Mercury and Venus appear from Earth, Earth would only be visible near the Sun - either as an evening 'star' after sunset OR as a morning 'star' before sunrise. It could NEVER be overhead at midnight from Mars (that position is only for outer planets)."
-                },
-                {
-                    question: "Would you expect an astronomer on Venus to see the Earth undergo 'retrograde' motion in the sky?",
-                    options: [
-                        "Yes, regularly",
-                        "No, never",
-                        "Only during transits of Venus",
-                        "Only when the Earth is eclipsed by the Moon",
-                        "Only during transits of Mercury"
-                    ],
-                    correct: 0,
-                    explanation: "Yes! From Venus, Earth is an OUTER planet. Just as Mars appears to go backward (retrograde) from Earth when we pass it, Earth would appear to go through retrograde motion from Venus whenever Venus passes Earth in its orbit. This happens regularly."
-                },
-                {
-                    question: "Who is known as the 'last great naked eye astronomer'?",
-                    options: [
-                        "Tycho Brahe",
-                        "Copernicus",
-                        "Kepler",
-                        "Galileo",
-                        "Newton"
-                    ],
-                    correct: 0,
-                    explanation: "Tycho Brahe (1546-1601) made the most accurate astronomical observations ever recorded before the invention of the telescope. His precise measurements of planetary positions were later used by Kepler to discover the laws of planetary motion."
-                },
-                {
-                    question: "Who is most closely associated with the realization that planets move in ellipses around the Sun?",
-                    options: [
-                        "Kepler",
-                        "Newton",
-                        "Copernicus",
-                        "Galileo",
-                        "Tycho Brahe"
-                    ],
-                    correct: 0,
-                    explanation: "Johannes Kepler discovered that planets move in elliptical orbits (not circular) around the Sun. This was his First Law of Planetary Motion, published in 1609, based on analyzing Tycho Brahe's precise observations of Mars."
-                },
-                {
-                    question: "What causes the retrograde motion of Mars as seen from Earth?",
-                    options: [
-                        "Mars actually stops and reverses direction in its orbit",
-                        "Earth passes Mars in its orbit, making Mars appear to move backward",
-                        "The gravitational pull of Jupiter affects Mars's orbit",
-                        "Atmospheric distortion makes Mars appear to move erratically",
-                        "Mars's elliptical orbit causes it to speed up and slow down"
-                    ],
-                    correct: 1,
-                    explanation: "Retrograde motion is an optical illusion caused by Earth passing Mars. Since Earth orbits faster (closer to Sun), we periodically 'lap' Mars. During this passing, Mars appears to move backward against the background stars, similar to how a faster car makes a slower car appear to move backward."
-                }
-            ],
-            "parallax": [
-                {
-                    question: "A star at 1 parsec shows a parallax of 1 arcsecond. What parallax would we observe for a star at 100 parsecs?",
-                    options: [
-                        "0.01 arcseconds",
-                        "0.1 arcseconds",
-                        "1 arcsecond",
-                        "10 arcseconds",
-                        "100 arcseconds"
-                    ],
-                    correct: 0,
-                    explanation: "Parallax is INVERSELY proportional to distance. If distance increases by 100×, parallax decreases by 100×. So 1 arcsecond ÷ 100 = 0.01 arcseconds. This is why measuring parallax for distant stars is so challenging!"
-                },
-                {
-                    question: "How would observations of parallax for an astronomer on Venus differ from those made on Earth?",
-                    options: [
-                        "The parallax of distant stars would be smaller",
-                        "The parallax of distant stars would be larger",
-                        "The parallax of distant stars would be similar",
-                        "The change in parallax would be different for each star",
-                        "No parallax would be visible"
-                    ],
-                    correct: 0,
-                    explanation: "Parallax depends on the baseline of observation. Earth uses a 2 AU baseline (opposite sides of Earth's orbit). Venus, being closer to the Sun, has a smaller orbit and thus a smaller baseline, resulting in smaller parallax angles for the same stars."
-                },
-                {
-                    question: "To the nearest hundred years, how long ago was stellar parallax first accurately measured?",
-                    options: [
-                        "200 years",
-                        "100 years",
-                        "300 years",
-                        "400 years",
-                        "500 years"
-                    ],
-                    correct: 0,
-                    explanation: "Stellar parallax was first successfully measured by Friedrich Bessel in 1838 (about 200 years ago). He measured the parallax of the star 61 Cygni. This was one of the most important astronomical achievements because it proved Earth orbits the Sun and gave the first direct measurement of stellar distances."
-                }
-            ],
-            "light-spectrum": [
-                {
-                    question: "Red light has a lower frequency than blue light. This tells us that...",
-                    options: [
-                        "Red light has a longer wavelength than blue light",
-                        "Red light has a shorter wavelength than blue light",
-                        "Red light moves more quickly than blue light",
-                        "Red light moves more slowly than blue light",
-                        "Red light is harder to produce than blue light"
-                    ],
-                    correct: 0,
-                    explanation: "Frequency and wavelength are inversely related (c = λν). Lower frequency means longer wavelength. Red light has a wavelength of about 700nm while blue is about 450nm. All electromagnetic radiation travels at the same speed (c) in a vacuum."
-                },
-                {
-                    question: "Which of the following kinds of electromagnetic radiation was discovered before the 1860s?",
-                    options: [
-                        "Infrared",
-                        "Gamma ray",
-                        "X-ray",
-                        "Radio",
-                        "Microwave"
-                    ],
-                    correct: 0,
-                    explanation: "Infrared was discovered by William Herschel in 1800, when he discovered heat beyond the red end of the visible spectrum. X-rays (1895), gamma rays (1900), and radio waves from space (1930s) were all discovered later."
-                },
-                {
-                    question: "What source of radio waves was detected by Karl Jansky in the 1930s?",
-                    options: [
-                        "The centre of the Milky Way galaxy",
-                        "The Sun",
-                        "The Earth's atmosphere",
-                        "Inside the solar system",
-                        "A nebula in space"
-                    ],
-                    correct: 0,
-                    explanation: "Karl Jansky discovered radio waves coming from the center of the Milky Way galaxy in 1932. This discovery founded the field of radio astronomy. He was originally investigating static that interfered with transatlantic radio communications."
-                },
-                {
-                    question: "Which type of telescope is most commonly collected into a network to improve its resolution?",
-                    options: [
-                        "Radio",
-                        "Optical",
-                        "X-ray",
-                        "Gamma-ray",
-                        "Infrared"
-                    ],
-                    correct: 0,
-                    explanation: "Radio telescopes are most commonly linked in interferometer arrays (like the VLA, ALMA, or the Event Horizon Telescope). Radio waves have long wavelengths, requiring huge baselines between telescopes to achieve good resolution. The technique is called interferometry."
-                },
-                {
-                    question: "Stellar spectra are typically...",
-                    options: [
-                        "Continuum emission with super-imposed absorption lines",
-                        "Continuum emission only",
-                        "Continuum emission with super-imposed emission lines",
-                        "Many emission lines that combine to form a rainbow",
-                        "Combinations of absorption and emission lines"
-                    ],
-                    correct: 0,
-                    explanation: "Most stars show a continuous spectrum (blackbody curve) with dark absorption lines superimposed. These absorption lines are caused by cooler gases in the star's outer atmosphere absorbing specific wavelengths. The pattern of lines reveals the star's composition and temperature."
-                },
-                {
-                    question: "Which of these statements about infrared radiation is TRUE? (Select the FALSE one)",
-                    options: [
-                        "The Hubble Space Telescope primarily detects infrared light",
-                        "Infrared radiation passes through dust between stars more easily than visible light",
-                        "The James Webb Space Telescope primarily detects infrared light",
-                        "Longer wavelength infrared radiation is absorbed by Earth's atmosphere",
-                        "A very hot blackbody gives off less infrared radiation than a cold one"
-                    ],
-                    correct: 0,
-                    explanation: "Hubble primarily detects visible and ultraviolet light, NOT infrared. JWST is the infrared observatory. Infrared DOES penetrate dust better than visible light. Long-wave infrared IS absorbed by Earth's atmosphere (requiring space telescopes). Hot objects emit LESS of their radiation as infrared compared to cold objects."
-                }
-            ],
-            "stars-magnitude": [
-                {
-                    question: "A sixth magnitude star is 100 times fainter than a first magnitude star. How many times fainter is an eleventh magnitude star relative to a first magnitude star?",
-                    options: [
-                        "10,000",
-                        "1,000",
-                        "10",
-                        "100,000",
-                        "1,000,000"
-                    ],
-                    correct: 0,
-                    explanation: "Each magnitude step is a factor of about 2.512 in brightness. 5 magnitude steps = 100×. From magnitude 1 to 11 is 10 steps = two sets of 5 steps = 100 × 100 = 10,000. So an 11th magnitude star is 10,000 times fainter than a 1st magnitude star."
-                },
-                {
-                    question: "The Sun has an absolute magnitude of 4.83. A human being 10 parsecs from the Sun would...",
-                    options: [
-                        "Just be able to see it with the naked eye",
-                        "Be able to see it with a small telescope",
-                        "Need a huge telescope to see it",
-                        "See it as one of the brightest stars in the sky",
-                        "See it as bright as the full moon"
-                    ],
-                    correct: 0,
-                    explanation: "Absolute magnitude is defined as the brightness at 10 parsecs. The Sun's absolute magnitude of 4.83 means at 10 parsecs, it would appear as a magnitude 4.83 star - just visible to the naked eye under good conditions (the limit is about magnitude 6)."
-                },
-                {
-                    question: "Explain why the colours of stars tell us their temperatures, but the colours of Post-It notes do NOT.",
-                    options: [
-                        "Stars emit light due to heat; Post-It notes only reflect light",
-                        "Stars are much larger than Post-It notes",
-                        "Post-It notes are too cool to emit thermal radiation",
-                        "Stars are blackbodies; Post-It notes are not",
-                        "Both A and D are correct"
-                    ],
-                    correct: 4,
-                    explanation: "Stars emit their own light due to their temperature (they approximate blackbodies). Hotter stars emit more blue light, cooler stars emit more red light. Post-It notes don't emit light - they reflect ambient light and absorb other colors. Their color tells us about pigments, not temperature."
-                },
-                {
-                    question: "Could you ever detect a star with the same colors as green or pink Post-It notes?",
-                    options: [
-                        "No - stars follow the blackbody curve and don't appear green or pink",
-                        "Yes - there are green and pink stars",
-                        "Only with special filters",
-                        "Only if the star is very hot",
-                        "Only if the star is very cool"
-                    ],
-                    correct: 0,
-                    explanation: "Stars follow the blackbody radiation curve. As they get hotter, they go: red → orange → yellow → white → blue-white. There's no temperature that produces a pure green or pink peak. Stars that peak in green still emit enough red and blue to appear white to our eyes."
-                }
-            ]
+            "solar-system": {
+                single: [
+                    {
+                        question: "Imagine you are an astronaut on the surface of the moon. How would the Earth appear to you?",
+                        options: [
+                            "It would vary from full to crescent during the course of an Earth day.",
+                            "It would always appear to be approximately full.",
+                            "It would always appear to be a crescent.",
+                            "It would vary from full to crescent during the course of an Earth month.",
+                            "None of the above."
+                        ],
+                        correct: 3,
+                        explanation: "From the Moon, Earth goes through phases just like the Moon does from Earth. Since the Moon is tidally locked to Earth, an astronaut on the near side would see Earth go through a complete cycle of phases over one lunar month (about 29.5 days)."
+                    },
+                    {
+                        question: "It is about 5 light-hours to Pluto. The Voyager spacecraft are about 1 light-day from Earth. The nearest star is roughly 4 light-years away. How much further would Voyager need to travel to reach the nearest star?",
+                        options: [
+                            "150 times",
+                            "2500 times",
+                            "2000 times",
+                            "1000 times",
+                            "1500 times"
+                        ],
+                        correct: 4,
+                        explanation: "4 light-years = 4 × 365 × 24 = 35,040 light-hours. Voyager is at 24 light-hours (1 light-day). 35,040 / 24 ≈ 1,460, which is approximately 1500 times."
+                    },
+                    {
+                        question: "Which kind of object is the largest?",
+                        options: [
+                            "Solar system",
+                            "Galaxy",
+                            "Constellation",
+                            "Planet",
+                            "Star"
+                        ],
+                        correct: 1,
+                        explanation: "A galaxy is by far the largest. A galaxy contains billions of stars, many with their own solar systems. Constellations are patterns we see from Earth, not physical objects."
+                    },
+                    {
+                        question: "The distance between the Earth and the Moon is roughly a _____, distances between the inner planets are roughly _____, distances to the outer planets are roughly light-hours, and distances to the nearest stars are roughly light-years.",
+                        options: [
+                            "light minutes / light seconds",
+                            "light seconds / light hours",
+                            "light seconds / light minutes",
+                            "light hours / light minutes",
+                            "light days / light hours"
+                        ],
+                        correct: 2,
+                        explanation: "Earth-Moon distance is about 1.3 light-seconds. Distances between inner planets are measured in light-minutes. Outer planets are light-hours away, and nearest stars are light-years away."
+                    },
+                    {
+                        question: "If the Sun were the size of a grapefruit (about 10cm diameter), how far away would the nearest star (Proxima Centauri) be?",
+                        options: [
+                            "About 100 meters",
+                            "About 1 kilometer",
+                            "About 3000 kilometers",
+                            "About 100 kilometers",
+                            "About 10 kilometers"
+                        ],
+                        correct: 2,
+                        explanation: "At this scale, the Sun is 10cm. Proxima Centauri is about 270,000 AU away. At 1 AU = 15m at this scale, Proxima Centauri would be about 4 million meters = 4000 km away, roughly the distance across a continent."
+                    },
+                    {
+                        question: "How long does it take light to travel from the Sun to Earth?",
+                        options: [
+                            "About 8 minutes",
+                            "About 1 second",
+                            "About 1 hour",
+                            "About 1 day",
+                            "Instantly"
+                        ],
+                        correct: 0,
+                        explanation: "Light travels at 300,000 km/s. The Sun is about 150 million km from Earth (1 AU). Light takes approximately 8 minutes and 20 seconds to travel this distance."
+                    },
+                    {
+                        question: "What is the approximate diameter of our solar system (to the orbit of Neptune)?",
+                        options: [
+                            "30 AU",
+                            "60 AU",
+                            "100 AU",
+                            "1 light-year",
+                            "10 AU"
+                        ],
+                        correct: 1,
+                        explanation: "Neptune orbits at about 30 AU from the Sun. The diameter of the solar system to Neptune's orbit is therefore about 60 AU. The heliopause extends further to about 120 AU."
+                    },
+                    {
+                        question: "Which planet is closest to the Sun?",
+                        options: [
+                            "Venus",
+                            "Mercury",
+                            "Mars",
+                            "Earth",
+                            "Jupiter"
+                        ],
+                        correct: 1,
+                        explanation: "Mercury is the innermost planet, orbiting at an average distance of about 0.39 AU from the Sun. It completes an orbit in just 88 Earth days."
+                    }
+                ],
+                multi: [
+                    {
+                        question: "Which of the following statements about the solar system are TRUE? (Select all that apply)",
+                        options: [
+                            "Jupiter is the largest planet in our solar system",
+                            "Venus rotates in the opposite direction to most planets",
+                            "Mars has two moons: Phobos and Deimos",
+                            "Saturn is the only planet with rings",
+                            "The asteroid belt lies between Mars and Jupiter"
+                        ],
+                        correct: [0, 1, 2, 4],
+                        explanation: "Jupiter is indeed the largest planet. Venus has retrograde rotation. Mars has two small moons. However, Jupiter, Uranus, and Neptune also have ring systems (though Saturn's are most prominent). The asteroid belt does lie between Mars and Jupiter."
+                    },
+                    {
+                        question: "Which of these are gas giants? (Select all that apply)",
+                        options: [
+                            "Jupiter",
+                            "Saturn",
+                            "Uranus",
+                            "Neptune",
+                            "Pluto"
+                        ],
+                        correct: [0, 1, 2, 3],
+                        explanation: "Jupiter and Saturn are gas giants (mostly hydrogen and helium). Uranus and Neptune are ice giants (more heavy elements). All four are considered 'giant planets' as opposed to terrestrial planets. Pluto is a dwarf planet."
+                    }
+                ],
+                written: [
+                    {
+                        question: "Explain why Pluto was reclassified from a planet to a dwarf planet in 2006. What are the three criteria for being a planet, and which one(s) does Pluto fail to meet?",
+                        keyPoints: ["IAU definition requires orbiting Sun, being round, and clearing orbit", "Pluto fails the 'cleared its orbit' criterion", "Pluto shares its orbital zone with other Kuiper Belt objects", "Discovery of Eris prompted the reclassification"],
+                        sampleAnswer: "In 2006, the IAU defined a planet as: (1) orbiting the Sun, (2) being round due to self-gravity, and (3) having cleared its orbital neighborhood. Pluto meets criteria 1 and 2, but fails criterion 3 - it shares its orbital region with many other Kuiper Belt objects. The discovery of Eris, similar in size to Pluto, forced astronomers to either classify many objects as planets or redefine what a planet is."
+                    },
+                    {
+                        question: "Describe the scale of the solar system. If you were to create a scale model where the Sun is the size of a basketball, approximately where would each of the planets be located? Why is this scale important for understanding space exploration?",
+                        keyPoints: ["Demonstrates vast empty space in solar system", "Inner planets relatively close, outer planets very far", "Illustrates challenges of space travel", "Shows why we haven't sent humans beyond the Moon"],
+                        sampleAnswer: "On a basketball-sized Sun scale: Mercury ~25m, Venus ~45m, Earth ~65m, Mars ~100m, Jupiter ~340m, Saturn ~620m, Uranus ~1.2km, Neptune ~1.9km. This shows the solar system is mostly empty space - inner planets fit in a city block, but outer planets require kilometers. This scale explains why space missions take years and why human exploration beyond the Moon is so challenging."
+                    }
+                ]
+            },
+            "moon-phases": {
+                single: [
+                    {
+                        question: "Choose the most accurate answer: A crescent moon can be visible in the night sky...",
+                        options: [
+                            "At any time of the night",
+                            "Shortly before sunrise or shortly after sunset",
+                            "Shortly after sunset",
+                            "Shortly before sunrise",
+                            "At midnight"
+                        ],
+                        correct: 1,
+                        explanation: "A crescent moon is always relatively close to the Sun in the sky, so it can only be seen shortly after sunset (waxing crescent) or shortly before sunrise (waning crescent). It cannot be seen at midnight because that would require it to be opposite the Sun."
+                    },
+                    {
+                        question: "Why do we always see the same face of the Moon from Earth?",
+                        options: [
+                            "The Moon does not rotate on its axis",
+                            "The Moon rotates once per day",
+                            "The Moon rotates once per orbit around Earth (tidal locking)",
+                            "The Moon's rotation is random",
+                            "Earth's gravity prevents the Moon from rotating"
+                        ],
+                        correct: 2,
+                        explanation: "The Moon IS rotating - it rotates exactly once per orbit around Earth. This is called 'tidal locking' or 'synchronous rotation.' This is why we always see the same face."
+                    },
+                    {
+                        question: "If you observe a full moon tonight, approximately when will you see the next new moon?",
+                        options: [
+                            "About 7 days",
+                            "About 14 days",
+                            "About 21 days",
+                            "About 28 days",
+                            "About 3.5 days"
+                        ],
+                        correct: 1,
+                        explanation: "The lunar cycle is about 29.5 days. From full moon to new moon is half a cycle, so about 14-15 days."
+                    },
+                    {
+                        question: "What causes the phases of the Moon?",
+                        options: [
+                            "Earth's shadow falling on the Moon",
+                            "The Moon's shadow falling on Earth",
+                            "The changing angle of sunlight illuminating the Moon as seen from Earth",
+                            "Clouds blocking parts of the Moon",
+                            "The Moon changing shape as it orbits"
+                        ],
+                        correct: 2,
+                        explanation: "Moon phases are caused by the changing geometry of the Sun-Earth-Moon system. As the Moon orbits Earth, we see different portions of its sunlit half. Earth's shadow causes lunar eclipses, NOT regular phases."
+                    },
+                    {
+                        question: "During which phase can a lunar eclipse occur?",
+                        options: [
+                            "New Moon",
+                            "First Quarter",
+                            "Full Moon",
+                            "Crescent",
+                            "Any phase"
+                        ],
+                        correct: 2,
+                        explanation: "A lunar eclipse can only occur at Full Moon, when the Moon passes through Earth's shadow. However, eclipses don't happen every full moon because the Moon's orbit is tilted about 5° to Earth's orbital plane."
+                    },
+                    {
+                        question: "During which phase can a solar eclipse occur?",
+                        options: [
+                            "New Moon",
+                            "Full Moon",
+                            "First Quarter",
+                            "Third Quarter",
+                            "Any phase"
+                        ],
+                        correct: 0,
+                        explanation: "A solar eclipse can only occur at New Moon, when the Moon passes between the Sun and Earth, casting its shadow on Earth."
+                    },
+                    {
+                        question: "What is the difference between a sidereal month and a synodic month?",
+                        options: [
+                            "They are the same thing",
+                            "Sidereal is relative to stars (27.3 days), synodic is relative to Sun (29.5 days)",
+                            "Sidereal is 29.5 days, synodic is 27.3 days",
+                            "Sidereal is for full moons, synodic is for new moons",
+                            "Sidereal is measured from Earth, synodic from the Sun"
+                        ],
+                        correct: 1,
+                        explanation: "Sidereal month (27.3 days) is the time for the Moon to complete one orbit relative to the stars. Synodic month (29.5 days) is the time between identical phases (e.g., full to full). The extra 2.2 days accounts for Earth's motion around the Sun."
+                    },
+                    {
+                        question: "Why doesn't the Moon have an atmosphere?",
+                        options: [
+                            "It's too hot for gases to exist",
+                            "It's too small - its gravity is too weak to retain an atmosphere",
+                            "Solar wind has blown it all away",
+                            "It never had any volcanic activity to release gases",
+                            "The Earth's gravity pulled it away"
+                        ],
+                        correct: 1,
+                        explanation: "The Moon's gravity is only 1/6 of Earth's, which is too weak to retain gas molecules. Any atmosphere would quickly escape to space. Additionally, the Moon has no magnetic field to protect against solar wind stripping."
+                    }
+                ],
+                multi: [
+                    {
+                        question: "Which of the following statements about the Moon are TRUE? (Select all that apply)",
+                        options: [
+                            "The Moon is tidally locked to Earth",
+                            "The far side of the Moon is always dark",
+                            "The Moon has no atmosphere",
+                            "The Moon's gravity is about 1/6 of Earth's",
+                            "The Moon is the largest moon in the solar system"
+                        ],
+                        correct: [0, 2, 3],
+                        explanation: "The Moon is tidally locked (same face always toward Earth). The far side gets just as much sunlight - it's not 'dark'. The Moon has essentially no atmosphere. Its gravity is about 1/6 Earth's. However, Jupiter's Ganymede and Saturn's Titan are larger than our Moon."
+                    },
+                    {
+                        question: "During a total lunar eclipse, which of these are true? (Select all that apply)",
+                        options: [
+                            "The Moon passes through Earth's umbra",
+                            "The Moon appears reddish",
+                            "It can only be seen from one side of Earth",
+                            "It occurs at full moon",
+                            "The Moon disappears completely"
+                        ],
+                        correct: [0, 1, 3],
+                        explanation: "During totality, the Moon is in Earth's umbra (full shadow). It appears reddish due to sunlight refracted through Earth's atmosphere (Rayleigh scattering - same reason sunsets are red). It can be seen from anywhere on Earth's night side. The Moon doesn't disappear - it glows red."
+                    }
+                ],
+                written: [
+                    {
+                        question: "Explain the difference between a solar eclipse and a lunar eclipse. Include in your answer: which phases they occur at, why they don't happen every month, and why solar eclipses are visible from a much smaller area than lunar eclipses.",
+                        keyPoints: ["Solar eclipse at New Moon, lunar at Full Moon", "Moon's orbit tilted 5° so alignment rare", "Solar eclipse visible only in Moon's shadow path", "Lunar eclipse visible from entire night side of Earth"],
+                        sampleAnswer: "A solar eclipse occurs at New Moon when the Moon blocks the Sun, casting a shadow on Earth. A lunar eclipse occurs at Full Moon when Earth blocks sunlight from reaching the Moon. They don't happen monthly because the Moon's orbit is tilted 5° to the ecliptic - most months the Moon passes above or below Earth's shadow (lunar) or the Sun (solar). Solar eclipses are only visible from the narrow path of the Moon's shadow (max ~270km wide), while lunar eclipses are visible from anywhere on Earth's night side."
+                    }
+                ]
+            },
+            "matariki": {
+                single: [
+                    {
+                        question: "In what Western calendar month(s) does the modern Matariki public holiday take place?",
+                        options: [
+                            "June or July",
+                            "July",
+                            "June",
+                            "May or June",
+                            "May, June or July"
+                        ],
+                        correct: 0,
+                        explanation: "Matariki is celebrated when the Pleiades star cluster first rises before sunrise, which occurs in late June or early July in New Zealand. The exact date varies each year based on the lunar calendar."
+                    },
+                    {
+                        question: "Within which Western constellation is the Matariki cluster located?",
+                        options: [
+                            "Taurus",
+                            "Orion",
+                            "Eridanus",
+                            "Aries",
+                            "Southern Cross"
+                        ],
+                        correct: 0,
+                        explanation: "The Matariki cluster (Pleiades or M45) is located in the constellation Taurus. It's one of the nearest star clusters to Earth at about 440 light-years away."
+                    },
+                    {
+                        question: "Why do we need leap years?",
+                        options: [
+                            "The time taken for the Earth to go round the Sun is not an exact number of days.",
+                            "The time taken for the Moon to go round the Earth is not an exact number of days.",
+                            "The time taken for the Earth to go round the Sun is not an exact number of months.",
+                            "Because the speed at which the Earth rotates on its axis is slowing down.",
+                            "Because the speed at which the Earth goes round the Sun is slowing down."
+                        ],
+                        correct: 0,
+                        explanation: "A year (Earth's orbit around the Sun) takes approximately 365.25 days. Without leap years, our calendar would drift by about 6 hours each year."
+                    },
+                    {
+                        question: "What is the significance of Matariki in Māori culture?",
+                        options: [
+                            "It marks the Māori New Year",
+                            "It signals the start of winter",
+                            "It indicates when to plant crops only",
+                            "It's a time for harvesting only",
+                            "It has no special significance"
+                        ],
+                        correct: 0,
+                        explanation: "Matariki marks the Māori New Year. It's a time for remembering the dead, celebrating the present, and planning for the future. Traditionally it also signaled when to harvest or plant depending on the cluster's brightness."
+                    },
+                    {
+                        question: "How many stars are typically visible in the Matariki cluster to the naked eye?",
+                        options: [
+                            "3-4 stars",
+                            "6-9 stars",
+                            "15-20 stars",
+                            "Over 50 stars",
+                            "Just 1 star"
+                        ],
+                        correct: 1,
+                        explanation: "Most people can see 6-9 stars in the Pleiades cluster with the naked eye. The number varies based on eyesight and viewing conditions. Some cultures recognize 7 stars, others 9."
+                    },
+                    {
+                        question: "What is another name for the Matariki cluster?",
+                        options: [
+                            "The Seven Sisters / Pleiades",
+                            "Orion's Belt",
+                            "The Big Dipper",
+                            "The Southern Cross",
+                            "Alpha Centauri"
+                        ],
+                        correct: 0,
+                        explanation: "Matariki is also known as the Pleiades or the Seven Sisters. It's an open star cluster designated M45 in Messier's catalog."
+                    },
+                    {
+                        question: "Why does the date of Matariki change each year?",
+                        options: [
+                            "Because it's based on the lunar calendar and the heliacal rising",
+                            "Because the stars move around",
+                            "Because New Zealand changes time zones",
+                            "Because Earth's orbit changes",
+                            "It doesn't change - it's always the same date"
+                        ],
+                        correct: 0,
+                        explanation: "Matariki is celebrated at the heliacal rising of the Pleiades (first visible rising before sunrise) combined with a specific lunar phase. Since the lunar calendar doesn't align perfectly with the solar year, the date varies between June and July."
+                    }
+                ],
+                multi: [
+                    {
+                        question: "Which of the following calendar systems use leap mechanisms to stay aligned with seasons? (Select all that apply)",
+                        options: [
+                            "Gregorian (Western) calendar",
+                            "Māori lunar calendar",
+                            "Chinese calendar",
+                            "Islamic calendar",
+                            "Jewish calendar"
+                        ],
+                        correct: [0, 1, 2, 4],
+                        explanation: "The Gregorian calendar adds a leap day every 4 years. The Māori calendar uses intercalary months. The Chinese calendar adds leap months. The Jewish calendar also adds leap months. The Islamic calendar is purely lunar with no leap mechanism, so it drifts through the seasons."
+                    }
+                ],
+                written: [
+                    {
+                        question: "Compare and contrast the Western (Gregorian) calendar with traditional lunar calendars like those used in Māori culture. What are the advantages and disadvantages of each system? Why do we need different types of calendars?",
+                        keyPoints: ["Solar vs lunar basis", "Seasonal alignment vs moon phase tracking", "Cultural and practical purposes", "Agricultural and religious significance"],
+                        sampleAnswer: "The Gregorian calendar is solar-based (365.25 days), keeping seasons aligned but ignoring moon phases. Lunar calendars (like traditional Māori) track moon cycles (~354 days/year) but drift through seasons unless corrected with intercalary months. Solar calendars are better for agriculture and seasons. Lunar calendars are useful for religious observances and tides. Many cultures use lunisolar calendars that combine both. Different calendars serve different cultural, religious, and practical needs."
+                    }
+                ]
+            },
+            "telescopes": {
+                single: [
+                    {
+                        question: "Which of these statements about telescopes and famous scientists is the most accurate?",
+                        options: [
+                            "Galileo used a refractor, Newton used a reflector.",
+                            "Galileo used a reflector, Newton used a refractor.",
+                            "Newton and Galileo both used refracting telescopes.",
+                            "Newton and Galileo both used reflecting telescopes.",
+                            "Newton used a reflecting telescope, but the detailed form of Galileo's telescope is unknown."
+                        ],
+                        correct: 0,
+                        explanation: "Galileo used a refracting telescope (using lenses) for his astronomical discoveries in 1609-1610. Newton invented the reflecting telescope (using mirrors) in 1668 to avoid chromatic aberration."
+                    },
+                    {
+                        question: "The mirrors of a reflecting telescope must always be made of transparent material?",
+                        options: [
+                            "True",
+                            "False"
+                        ],
+                        correct: 1,
+                        explanation: "False! Telescope mirrors are made of opaque materials (typically glass coated with aluminum or silver). The mirror reflects light from its front surface."
+                    },
+                    {
+                        question: "Which of the following things was NOT discovered by Galileo?",
+                        options: [
+                            "The planet Uranus",
+                            "The craters on the moon",
+                            "The phases of Venus",
+                            "The existence of many stars in the Milky Way",
+                            "The moons of Jupiter"
+                        ],
+                        correct: 0,
+                        explanation: "Galileo did NOT discover Uranus - it was discovered by William Herschel in 1781. Galileo discovered Jupiter's moons, Moon's craters, phases of Venus, sunspots, and resolved the Milky Way into stars."
+                    },
+                    {
+                        question: "The Hubble Space Telescope is roughly 2.5 metres in diameter. Each Keck telescope is roughly 10 metres in diameter. How many times more effective is a Keck telescope than Hubble at gathering light?",
+                        options: [
+                            "16",
+                            "4",
+                            "8",
+                            "10",
+                            "32"
+                        ],
+                        correct: 0,
+                        explanation: "Light gathering power is proportional to the AREA of the mirror, which goes as the square of the diameter. (10/2.5)² = 4² = 16."
+                    },
+                    {
+                        question: "The human eye has a resolution of 30 arc seconds with a 6mm pupil. Estimate the resolution of a telescope with a 60mm lens.",
+                        options: [
+                            "3 arc seconds",
+                            "30 arc seconds",
+                            "0.3 arc seconds",
+                            "6 arc seconds",
+                            "1 arc second"
+                        ],
+                        correct: 0,
+                        explanation: "Resolution is inversely proportional to aperture diameter. 60mm/6mm = 10× larger, so resolution is 10× better: 30/10 = 3 arc seconds."
+                    },
+                    {
+                        question: "What is the main advantage of placing telescopes in space?",
+                        options: [
+                            "They are closer to the stars",
+                            "They avoid atmospheric distortion and absorption",
+                            "They can be larger",
+                            "They use less power",
+                            "They are cheaper to maintain"
+                        ],
+                        correct: 1,
+                        explanation: "Space telescopes avoid Earth's atmosphere, which causes blurring (seeing), absorbs certain wavelengths (UV, X-ray, most IR), and creates background light. Being 'closer to stars' is negligible - even Hubble is only 540km up vs. stars light-years away."
+                    },
+                    {
+                        question: "What is chromatic aberration in telescopes?",
+                        options: [
+                            "Different colors focus at different points due to refraction",
+                            "The telescope shaking from wind",
+                            "Dust on the lens",
+                            "Light pollution affecting images",
+                            "The mirror being too small"
+                        ],
+                        correct: 0,
+                        explanation: "Chromatic aberration occurs in refracting telescopes because different wavelengths (colors) bend by different amounts when passing through glass. Blue light focuses closer than red light, causing color fringing. Reflecting telescopes avoid this problem."
+                    },
+                    {
+                        question: "Why are radio telescopes so much larger than optical telescopes?",
+                        options: [
+                            "Radio waves are weaker, so they need more collecting area",
+                            "Radio wavelengths are much longer, requiring larger dishes for good resolution",
+                            "Radio sources are further away",
+                            "Radio telescopes need to collect more heat",
+                            "It's just tradition"
+                        ],
+                        correct: 1,
+                        explanation: "Resolution depends on wavelength/aperture. Radio waves have wavelengths of centimeters to meters (vs. ~500nm for visible light), so radio dishes must be enormous to achieve comparable resolution. This is why interferometry is crucial for radio astronomy."
+                    }
+                ],
+                multi: [
+                    {
+                        question: "Which of the following are advantages of reflecting telescopes over refracting telescopes? (Select all that apply)",
+                        options: [
+                            "No chromatic aberration",
+                            "Easier to make large apertures",
+                            "Mirrors can be supported from behind",
+                            "Better for planetary observation",
+                            "Lenses are cheaper than mirrors"
+                        ],
+                        correct: [0, 1, 2],
+                        explanation: "Reflectors have no chromatic aberration (mirrors reflect all wavelengths equally). Large mirrors are easier to make than large lenses (only one surface to polish, can support from behind). Large lenses sag under their own weight. Both types can observe planets well."
+                    },
+                    {
+                        question: "Which of these space telescopes are currently operational? (Select all that apply)",
+                        options: [
+                            "Hubble Space Telescope",
+                            "James Webb Space Telescope",
+                            "Spitzer Space Telescope",
+                            "Chandra X-ray Observatory",
+                            "Kepler Space Telescope"
+                        ],
+                        correct: [0, 1, 3],
+                        explanation: "Hubble (1990-present), JWST (2022-present), and Chandra (1999-present) are still operational. Spitzer was retired in 2020. Kepler's primary mission ended in 2018 (though it's still in space)."
+                    }
+                ],
+                written: [
+                    {
+                        question: "Explain why astronomers use different types of telescopes (radio, infrared, optical, UV, X-ray, gamma-ray) to study the universe. What can we learn from each type that we can't learn from the others? Give specific examples of discoveries made with each type.",
+                        keyPoints: ["Different physical processes emit different wavelengths", "Cold objects emit radio/IR, hot objects emit UV/X-ray", "Dust penetration at longer wavelengths", "Multi-wavelength approach gives complete picture"],
+                        sampleAnswer: "Different astronomical processes emit different wavelengths. Radio: cold gas clouds, pulsars, cosmic microwave background. Infrared: star-forming regions hidden by dust, cool stars, distant galaxies (redshifted). Optical: stars, galaxies, planets - what we traditionally see. UV: hot young stars, active galactic nuclei. X-ray: black hole accretion disks, supernova remnants, hot gas in galaxy clusters. Gamma-ray: most energetic events like gamma-ray bursts, nuclear processes. Each reveals different physics - a complete understanding requires multi-wavelength observations."
+                    }
+                ]
+            },
+            "planetary-motion": {
+                single: [
+                    {
+                        question: "Imagine you are an astronomer on Mars. In which of the following places would you be able to see the planet Earth in the Martian sky?",
+                        options: [
+                            "As a 'star' close to the setting sun in the evening sky AND as a 'star' close to the rising sun in the morning sky",
+                            "As a 'star' high overhead at midnight",
+                            "As a second sun in the daytime sky",
+                            "Only as a 'star' close to the setting sun in the evening sky",
+                            "Only as a 'star' close to the rising sun in the morning sky"
+                        ],
+                        correct: 0,
+                        explanation: "From Mars, Earth is an inner planet (closer to the Sun). Like Mercury and Venus from Earth, Earth would only be visible near the Sun - either as an evening 'star' or morning 'star'. It could NEVER be overhead at midnight from Mars."
+                    },
+                    {
+                        question: "Would you expect an astronomer on Venus to see the Earth undergo 'retrograde' motion in the sky?",
+                        options: [
+                            "Yes, regularly",
+                            "No, never",
+                            "Only during transits of Venus",
+                            "Only when the Earth is eclipsed by the Moon",
+                            "Only during transits of Mercury"
+                        ],
+                        correct: 0,
+                        explanation: "Yes! From Venus, Earth is an OUTER planet. Just as Mars appears to go backward from Earth when we pass it, Earth would appear to go through retrograde motion from Venus whenever Venus passes Earth."
+                    },
+                    {
+                        question: "Who is known as the 'last great naked eye astronomer'?",
+                        options: [
+                            "Tycho Brahe",
+                            "Copernicus",
+                            "Kepler",
+                            "Galileo",
+                            "Newton"
+                        ],
+                        correct: 0,
+                        explanation: "Tycho Brahe (1546-1601) made the most accurate astronomical observations ever recorded before the invention of the telescope."
+                    },
+                    {
+                        question: "Who is most closely associated with the realization that planets move in ellipses around the Sun?",
+                        options: [
+                            "Kepler",
+                            "Newton",
+                            "Copernicus",
+                            "Galileo",
+                            "Tycho Brahe"
+                        ],
+                        correct: 0,
+                        explanation: "Johannes Kepler discovered that planets move in elliptical orbits. This was his First Law of Planetary Motion, published in 1609."
+                    },
+                    {
+                        question: "What causes the retrograde motion of Mars as seen from Earth?",
+                        options: [
+                            "Mars actually stops and reverses direction in its orbit",
+                            "Earth passes Mars in its orbit, making Mars appear to move backward",
+                            "The gravitational pull of Jupiter affects Mars's orbit",
+                            "Atmospheric distortion makes Mars appear to move erratically",
+                            "Mars's elliptical orbit causes it to speed up and slow down"
+                        ],
+                        correct: 1,
+                        explanation: "Retrograde motion is an optical illusion caused by Earth passing Mars. Since Earth orbits faster (closer to Sun), we periodically 'lap' Mars, making it appear to move backward."
+                    },
+                    {
+                        question: "What is the Copernican Revolution?",
+                        options: [
+                            "The discovery that Earth orbits the Sun, not vice versa",
+                            "The invention of the telescope",
+                            "The discovery of Neptune",
+                            "The realization that the universe is expanding",
+                            "The discovery of other galaxies"
+                        ],
+                        correct: 0,
+                        explanation: "The Copernican Revolution refers to Copernicus's heliocentric model (1543) that placed the Sun at the center with Earth and other planets orbiting it, overturning the geocentric model that had dominated for over 1000 years."
+                    },
+                    {
+                        question: "According to Kepler's Third Law, if Planet A is 4 times farther from the Sun than Planet B, how much longer is Planet A's orbital period?",
+                        options: [
+                            "4 times longer",
+                            "8 times longer",
+                            "16 times longer",
+                            "2 times longer",
+                            "64 times longer"
+                        ],
+                        correct: 1,
+                        explanation: "Kepler's Third Law: P² ∝ a³. If distance ratio is 4, then P² ratio is 4³ = 64, so P ratio is √64 = 8. Planet A's period is 8 times longer."
+                    },
+                    {
+                        question: "What is the main difference between the geocentric and heliocentric models?",
+                        options: [
+                            "Geocentric has Earth at center; heliocentric has Sun at center",
+                            "Geocentric uses circles; heliocentric uses ellipses",
+                            "Geocentric was Greek; heliocentric is modern",
+                            "There is no difference",
+                            "Geocentric explains retrograde motion; heliocentric does not"
+                        ],
+                        correct: 0,
+                        explanation: "The fundamental difference is the center: geocentric (Earth-centered, Ptolemaic) vs. heliocentric (Sun-centered, Copernican). This single change elegantly explains retrograde motion without needing epicycles."
+                    }
+                ],
+                multi: [
+                    {
+                        question: "Which of the following statements about Kepler's Laws are TRUE? (Select all that apply)",
+                        options: [
+                            "First Law: Planets orbit in ellipses with Sun at one focus",
+                            "Second Law: Planets move faster when closer to the Sun",
+                            "Third Law: P² ∝ a³ relates orbital period to distance",
+                            "Kepler's Laws apply only to planets, not moons",
+                            "Kepler discovered his laws using Newton's gravity"
+                        ],
+                        correct: [0, 1, 2],
+                        explanation: "Kepler's three laws describe: elliptical orbits, equal areas in equal times (faster at perihelion), and the period-distance relationship. They apply to ANY orbiting body (moons, asteroids, etc.). Kepler published his laws (1609-1619) before Newton's gravity theory (1687)."
+                    },
+                    {
+                        question: "Which planets can be seen from Earth undergoing retrograde motion? (Select all that apply)",
+                        options: [
+                            "Mercury",
+                            "Venus",
+                            "Mars",
+                            "Jupiter",
+                            "Saturn"
+                        ],
+                        correct: [0, 1, 2, 3, 4],
+                        explanation: "ALL planets undergo apparent retrograde motion as seen from Earth. Inner planets (Mercury, Venus) go retrograde when passing between Earth and Sun. Outer planets (Mars, Jupiter, Saturn, etc.) go retrograde when Earth passes them."
+                    }
+                ],
+                written: [
+                    {
+                        question: "Describe how our understanding of the solar system evolved from ancient Greek astronomy through Copernicus, Tycho Brahe, Kepler, and Newton. What key observations or insights did each contribute, and how did they build on each other's work?",
+                        keyPoints: ["Greek geocentric models (Aristotle, Ptolemy)", "Copernicus proposed heliocentric model", "Tycho made precise observations", "Kepler derived laws from Tycho's data", "Newton explained WHY with gravity"],
+                        sampleAnswer: "Ancient Greeks established mathematical astronomy but assumed Earth-centered universe. Ptolemy added epicycles to explain retrograde motion. Copernicus (1543) proposed Sun-centered model, simplifying explanations but keeping circular orbits. Tycho Brahe made unprecedented accurate observations without telescopes. Kepler used Tycho's Mars data to discover elliptical orbits and his three laws (1609-1619). Newton (1687) derived Kepler's laws from universal gravitation, explaining WHY planets move as they do and unifying celestial and terrestrial physics."
+                    }
+                ]
+            },
+            "parallax": {
+                single: [
+                    {
+                        question: "A star at 1 parsec shows a parallax of 1 arcsecond. What parallax would we observe for a star at 100 parsecs?",
+                        options: [
+                            "0.01 arcseconds",
+                            "0.1 arcseconds",
+                            "1 arcsecond",
+                            "10 arcseconds",
+                            "100 arcseconds"
+                        ],
+                        correct: 0,
+                        explanation: "Parallax is INVERSELY proportional to distance. If distance increases by 100×, parallax decreases by 100×. So 1 arcsecond ÷ 100 = 0.01 arcseconds."
+                    },
+                    {
+                        question: "How would observations of parallax for an astronomer on Venus differ from those made on Earth?",
+                        options: [
+                            "The parallax of distant stars would be smaller",
+                            "The parallax of distant stars would be larger",
+                            "The parallax of distant stars would be similar",
+                            "The change in parallax would be different for each star",
+                            "No parallax would be visible"
+                        ],
+                        correct: 0,
+                        explanation: "Parallax depends on the baseline. Earth uses a 2 AU baseline. Venus, being closer to the Sun, has a smaller orbit and thus a smaller baseline, resulting in smaller parallax angles."
+                    },
+                    {
+                        question: "To the nearest hundred years, how long ago was stellar parallax first accurately measured?",
+                        options: [
+                            "200 years",
+                            "100 years",
+                            "300 years",
+                            "400 years",
+                            "500 years"
+                        ],
+                        correct: 0,
+                        explanation: "Stellar parallax was first successfully measured by Friedrich Bessel in 1838 (about 200 years ago). He measured the parallax of the star 61 Cygni."
+                    },
+                    {
+                        question: "What is a parsec?",
+                        options: [
+                            "The distance at which a star has a parallax of 1 arcsecond",
+                            "The distance light travels in one year",
+                            "The distance from Earth to the Sun",
+                            "The diameter of Earth's orbit",
+                            "A measure of stellar brightness"
+                        ],
+                        correct: 0,
+                        explanation: "A parsec (parallax-second) is the distance at which a star would show a parallax of exactly 1 arcsecond. 1 parsec = 3.26 light-years = 206,265 AU = 3.09 × 10¹³ km."
+                    },
+                    {
+                        question: "Why was stellar parallax not detected until the 19th century?",
+                        options: [
+                            "Stars are too faint to measure",
+                            "The angles are extremely small, requiring precise instruments",
+                            "Ancient astronomers weren't looking for it",
+                            "Earth's atmosphere blocks parallax",
+                            "Parallax only works for nearby stars"
+                        ],
+                        correct: 1,
+                        explanation: "Even the nearest stars have parallaxes less than 1 arcsecond - smaller than the resolution of the human eye and early telescopes. Only with 19th century precision instruments could such tiny angles be measured."
+                    },
+                    {
+                        question: "If a star has a parallax of 0.5 arcseconds, how far away is it?",
+                        options: [
+                            "0.5 parsecs",
+                            "2 parsecs",
+                            "5 parsecs",
+                            "0.2 parsecs",
+                            "50 parsecs"
+                        ],
+                        correct: 1,
+                        explanation: "Distance (in parsecs) = 1/parallax (in arcseconds). So d = 1/0.5 = 2 parsecs."
+                    },
+                    {
+                        question: "The Gaia space mission can measure parallaxes with an accuracy of about 20 microarcseconds. How far can it accurately measure distances?",
+                        options: [
+                            "About 100 parsecs",
+                            "About 1000 parsecs",
+                            "About 10,000 parsecs",
+                            "About 10 parsecs",
+                            "About 100,000 parsecs"
+                        ],
+                        correct: 2,
+                        explanation: "With 20 microarcsecond (0.00002 arcsecond) accuracy, Gaia can measure distances out to about 1/0.00002 = 50,000 parsecs with reasonable accuracy, covering much of our galaxy."
+                    }
+                ],
+                multi: [
+                    {
+                        question: "Which of the following statements about parallax are TRUE? (Select all that apply)",
+                        options: [
+                            "Parallax is the apparent shift in position of nearby stars due to Earth's orbit",
+                            "The parallax angle is measured in arcseconds",
+                            "More distant stars show larger parallax",
+                            "Parallax can only be measured for stars in our galaxy",
+                            "The baseline for stellar parallax is 2 AU"
+                        ],
+                        correct: [0, 1, 3, 4],
+                        explanation: "Parallax is the apparent shift of nearby stars against distant background as Earth orbits. Angles are tiny (arcseconds or less). MORE distant stars show SMALLER (not larger) parallax. Parallax only works for relatively nearby stars within our galaxy. The baseline is Earth's orbital diameter (2 AU)."
+                    }
+                ],
+                written: [
+                    {
+                        question: "Explain the parallax method for measuring stellar distances. Include: what causes parallax, how it's measured, the relationship between parallax angle and distance, and why this method is limited to relatively nearby stars. Why is parallax considered the 'first rung' on the cosmic distance ladder?",
+                        keyPoints: ["Earth's orbit provides baseline", "Nearby stars appear to shift against background", "Distance = 1/parallax (in parsecs)", "Angles too small for distant stars", "Foundation for calibrating other methods"],
+                        sampleAnswer: "As Earth orbits the Sun, nearby stars appear to shift position relative to distant background stars - this is parallax. The angle is measured by observing a star 6 months apart (opposite sides of Earth's orbit, 2 AU baseline). Distance in parsecs equals 1 divided by parallax in arcseconds. The method is limited because angles become immeasurably small beyond a few thousand parsecs - even Gaia can't measure beyond our galaxy. Parallax is the 'first rung' because it's purely geometric (no assumptions), providing absolute distances that calibrate all other distance methods (standard candles, etc.)."
+                    }
+                ]
+            },
+            "light-spectrum": {
+                single: [
+                    {
+                        question: "Red light has a lower frequency than blue light. This tells us that...",
+                        options: [
+                            "Red light has a longer wavelength than blue light",
+                            "Red light has a shorter wavelength than blue light",
+                            "Red light moves more quickly than blue light",
+                            "Red light moves more slowly than blue light",
+                            "Red light is harder to produce than blue light"
+                        ],
+                        correct: 0,
+                        explanation: "Frequency and wavelength are inversely related (c = λν). Lower frequency means longer wavelength. Red light has a wavelength of about 700nm while blue is about 450nm."
+                    },
+                    {
+                        question: "Which of the following kinds of electromagnetic radiation was discovered before the 1860s?",
+                        options: [
+                            "Infrared",
+                            "Gamma ray",
+                            "X-ray",
+                            "Radio",
+                            "Microwave"
+                        ],
+                        correct: 0,
+                        explanation: "Infrared was discovered by William Herschel in 1800. X-rays (1895), gamma rays (1900), and radio waves from space (1930s) were all discovered later."
+                    },
+                    {
+                        question: "What source of radio waves was detected by Karl Jansky in the 1930s?",
+                        options: [
+                            "The centre of the Milky Way galaxy",
+                            "The Sun",
+                            "The Earth's atmosphere",
+                            "Inside the solar system",
+                            "A nebula in space"
+                        ],
+                        correct: 0,
+                        explanation: "Karl Jansky discovered radio waves coming from the center of the Milky Way galaxy in 1932, founding the field of radio astronomy."
+                    },
+                    {
+                        question: "Which type of telescope is most commonly collected into a network to improve its resolution?",
+                        options: [
+                            "Radio",
+                            "Optical",
+                            "X-ray",
+                            "Gamma-ray",
+                            "Infrared"
+                        ],
+                        correct: 0,
+                        explanation: "Radio telescopes are most commonly linked in interferometer arrays (VLA, ALMA, Event Horizon Telescope). Radio waves' long wavelengths require huge baselines for good resolution."
+                    },
+                    {
+                        question: "Stellar spectra are typically...",
+                        options: [
+                            "Continuum emission with super-imposed absorption lines",
+                            "Continuum emission only",
+                            "Continuum emission with super-imposed emission lines",
+                            "Many emission lines that combine to form a rainbow",
+                            "Combinations of absorption and emission lines"
+                        ],
+                        correct: 0,
+                        explanation: "Most stars show a continuous spectrum (blackbody curve) with dark absorption lines superimposed, caused by cooler gases in the star's outer atmosphere."
+                    },
+                    {
+                        question: "Which of these statements about infrared radiation is TRUE? (Select the FALSE one)",
+                        options: [
+                            "The Hubble Space Telescope primarily detects infrared light",
+                            "Infrared radiation passes through dust between stars more easily than visible light",
+                            "The James Webb Space Telescope primarily detects infrared light",
+                            "Longer wavelength infrared radiation is absorbed by Earth's atmosphere",
+                            "A very hot blackbody gives off less infrared radiation than a cold one"
+                        ],
+                        correct: 0,
+                        explanation: "Hubble primarily detects visible and ultraviolet light, NOT infrared. JWST is the infrared observatory. Infrared DOES penetrate dust better. Long-wave infrared IS absorbed by Earth's atmosphere."
+                    },
+                    {
+                        question: "What causes the dark lines in a stellar absorption spectrum?",
+                        options: [
+                            "Dust between us and the star",
+                            "Cooler gases in the star's atmosphere absorbing specific wavelengths",
+                            "The telescope's instruments",
+                            "Earth's atmosphere",
+                            "The star not emitting those wavelengths"
+                        ],
+                        correct: 1,
+                        explanation: "Dark absorption lines are caused by cooler atoms and molecules in the star's outer atmosphere absorbing specific wavelengths of the continuous spectrum from deeper, hotter layers."
+                    },
+                    {
+                        question: "What is the Doppler effect in astronomy used for?",
+                        options: [
+                            "Measuring a star's temperature",
+                            "Measuring a star's motion toward or away from us",
+                            "Measuring a star's distance",
+                            "Measuring a star's size",
+                            "Measuring a star's brightness"
+                        ],
+                        correct: 1,
+                        explanation: "The Doppler shift of spectral lines tells us the radial velocity - motion toward us (blueshift) or away (redshift). This is crucial for detecting exoplanets, measuring galaxy rotation, and discovering cosmic expansion."
+                    },
+                    {
+                        question: "Arrange these in order of increasing wavelength: radio, gamma, visible, X-ray, infrared",
+                        options: [
+                            "Gamma, X-ray, visible, infrared, radio",
+                            "Radio, infrared, visible, X-ray, gamma",
+                            "Visible, infrared, radio, X-ray, gamma",
+                            "Gamma, visible, X-ray, infrared, radio",
+                            "X-ray, gamma, visible, infrared, radio"
+                        ],
+                        correct: 0,
+                        explanation: "From shortest to longest wavelength: gamma rays < X-rays < visible light < infrared < radio waves. Remember: gamma and X-rays are high-energy (short wavelength), radio is low-energy (long wavelength)."
+                    }
+                ],
+                multi: [
+                    {
+                        question: "Which of the following statements about electromagnetic radiation are TRUE? (Select all that apply)",
+                        options: [
+                            "All EM radiation travels at the speed of light in a vacuum",
+                            "Higher frequency means higher energy",
+                            "Visible light is the only type that can travel through space",
+                            "Radio waves have the longest wavelengths",
+                            "Gamma rays have the highest energy"
+                        ],
+                        correct: [0, 1, 3, 4],
+                        explanation: "All EM radiation travels at c (300,000 km/s) in vacuum. Energy is proportional to frequency (E = hν). ALL types travel through space (not just visible). Radio has longest wavelengths (meters to km). Gamma rays have highest energy (from nuclear processes)."
+                    },
+                    {
+                        question: "Which of these require space-based telescopes because Earth's atmosphere blocks them? (Select all that apply)",
+                        options: [
+                            "Visible light",
+                            "Radio waves",
+                            "X-rays",
+                            "Gamma rays",
+                            "Most ultraviolet"
+                        ],
+                        correct: [2, 3, 4],
+                        explanation: "Earth's atmosphere is transparent to visible light and radio waves (our 'optical window' and 'radio window'). But it blocks X-rays, gamma rays, and most UV - requiring space telescopes. Some infrared also gets absorbed, requiring high-altitude or space observatories."
+                    }
+                ],
+                written: [
+                    {
+                        question: "Explain how astronomers use spectra to determine the composition, temperature, and motion of stars. What information does each aspect of a spectrum (continuum shape, absorption lines, line shifts) provide, and how do we extract this information?",
+                        keyPoints: ["Continuum shape indicates temperature (blackbody)", "Absorption lines identify elements present", "Line broadening indicates rotation/pressure", "Doppler shift shows radial velocity"],
+                        sampleAnswer: "A star's spectrum reveals: (1) Temperature from continuum shape - hotter stars peak at shorter wavelengths (Wien's Law), appearing bluer. (2) Composition from absorption lines - each element has unique spectral fingerprints; hydrogen shows Balmer lines, metals show various other lines. (3) Motion from Doppler shift - lines shifted blue = approaching, red = receding; shift amount gives velocity. (4) Line broadening reveals rotation (Doppler broadening), pressure (collisional broadening), and magnetic fields (Zeeman splitting). Spectroscopy is astronomy's most powerful diagnostic tool."
+                    }
+                ]
+            },
+            "stars-magnitude": {
+                single: [
+                    {
+                        question: "A sixth magnitude star is 100 times fainter than a first magnitude star. How many times fainter is an eleventh magnitude star relative to a first magnitude star?",
+                        options: [
+                            "10,000",
+                            "1,000",
+                            "10",
+                            "100,000",
+                            "1,000,000"
+                        ],
+                        correct: 0,
+                        explanation: "Each magnitude step is a factor of about 2.512. 5 magnitude steps = 100×. From magnitude 1 to 11 is 10 steps = two sets of 5 steps = 100 × 100 = 10,000."
+                    },
+                    {
+                        question: "The Sun has an absolute magnitude of 4.83. A human being 10 parsecs from the Sun would...",
+                        options: [
+                            "Just be able to see it with the naked eye",
+                            "Be able to see it with a small telescope",
+                            "Need a huge telescope to see it",
+                            "See it as one of the brightest stars in the sky",
+                            "See it as bright as the full moon"
+                        ],
+                        correct: 0,
+                        explanation: "Absolute magnitude is brightness at 10 parsecs. The Sun's absolute magnitude of 4.83 means at 10 parsecs, it would appear as magnitude 4.83 - just visible to the naked eye (limit is about magnitude 6)."
+                    },
+                    {
+                        question: "Explain why the colours of stars tell us their temperatures, but the colours of Post-It notes do NOT.",
+                        options: [
+                            "Stars emit light due to heat; Post-It notes only reflect light",
+                            "Stars are much larger than Post-It notes",
+                            "Post-It notes are too cool to emit thermal radiation",
+                            "Stars are blackbodies; Post-It notes are not",
+                            "Both A and D are correct"
+                        ],
+                        correct: 4,
+                        explanation: "Stars emit their own light due to their temperature (approximate blackbodies). Hotter stars emit more blue light. Post-It notes don't emit light - they reflect ambient light. Their color tells us about pigments, not temperature."
+                    },
+                    {
+                        question: "Could you ever detect a star with the same colors as green or pink Post-It notes?",
+                        options: [
+                            "No - stars follow the blackbody curve and don't appear green or pink",
+                            "Yes - there are green and pink stars",
+                            "Only with special filters",
+                            "Only if the star is very hot",
+                            "Only if the star is very cool"
+                        ],
+                        correct: 0,
+                        explanation: "Stars follow blackbody radiation: red → orange → yellow → white → blue-white as temperature increases. No temperature produces pure green or pink. Stars peaking in green still emit enough red and blue to appear white."
+                    },
+                    {
+                        question: "What is the difference between apparent magnitude and absolute magnitude?",
+                        options: [
+                            "Apparent is how bright it looks; absolute is how bright it really is at 10 parsecs",
+                            "Apparent is for nearby stars; absolute is for distant stars",
+                            "Apparent is measured from Earth; absolute is measured from the Sun",
+                            "There is no difference",
+                            "Apparent is for visible light; absolute is for all wavelengths"
+                        ],
+                        correct: 0,
+                        explanation: "Apparent magnitude is how bright a star appears from Earth (depends on distance and luminosity). Absolute magnitude is the intrinsic brightness - how bright it would appear at a standard distance of 10 parsecs."
+                    },
+                    {
+                        question: "Two stars have the same apparent magnitude. Star A is 10 parsecs away, Star B is 100 parsecs away. Which is more luminous?",
+                        options: [
+                            "Star A",
+                            "Star B",
+                            "They have the same luminosity",
+                            "Cannot determine from this information",
+                            "Neither - they're equally luminous"
+                        ],
+                        correct: 1,
+                        explanation: "Star B is 10× farther but appears equally bright, so it must be 100× more luminous (brightness falls as distance²). Star B is intrinsically much brighter."
+                    },
+                    {
+                        question: "What is the main sequence on the H-R diagram?",
+                        options: [
+                            "The band where stars spend most of their lives fusing hydrogen",
+                            "The brightest stars in the sky",
+                            "The coolest stars",
+                            "Dead stars",
+                            "Stars about to explode"
+                        ],
+                        correct: 0,
+                        explanation: "The main sequence is the diagonal band on the H-R diagram where stars spend ~90% of their lives fusing hydrogen into helium. Hotter, more massive stars are at the top-left; cooler, less massive at bottom-right."
+                    },
+                    {
+                        question: "Why do some very bright stars in the night sky appear dim while some dim stars appear bright?",
+                        options: [
+                            "Because of their different distances from Earth",
+                            "Because they're different colors",
+                            "Because of atmospheric effects",
+                            "Because they're different ages",
+                            "Because of light pollution"
+                        ],
+                        correct: 0,
+                        explanation: "Apparent brightness depends on both intrinsic luminosity AND distance. A very luminous distant star may appear dim, while a less luminous nearby star may appear bright. This is why we need absolute magnitude to compare true brightness."
+                    }
+                ],
+                multi: [
+                    {
+                        question: "Which of the following statements about the magnitude system are TRUE? (Select all that apply)",
+                        options: [
+                            "Smaller numbers mean brighter stars",
+                            "Negative magnitudes are possible",
+                            "A difference of 5 magnitudes equals a factor of 100 in brightness",
+                            "The system was invented by Galileo",
+                            "Apparent and absolute magnitude are the same for stars at 10 parsecs"
+                        ],
+                        correct: [0, 1, 2, 4],
+                        explanation: "The magnitude system is backwards (smaller = brighter). Negative magnitudes exist (Sirius: -1.46, Venus: up to -4, Sun: -26.7). 5 magnitudes = exactly 100× brightness ratio. The system dates to Hipparchus (ancient Greece), not Galileo. At 10 parsecs, apparent = absolute magnitude by definition."
+                    },
+                    {
+                        question: "Which of these are types of variable stars? (Select all that apply)",
+                        options: [
+                            "Cepheid variables",
+                            "RR Lyrae stars",
+                            "Eclipsing binaries",
+                            "Pulsating white dwarfs",
+                            "Main sequence stars"
+                        ],
+                        correct: [0, 1, 2, 3],
+                        explanation: "Cepheids and RR Lyrae stars pulsate regularly (used as standard candles). Eclipsing binaries vary as stars eclipse each other. Some white dwarfs pulsate. 'Main sequence' is not a variable type - it's the evolutionary phase where most stars spend their lives."
+                    }
+                ],
+                written: [
+                    {
+                        question: "Describe the Hertzsprung-Russell (H-R) diagram. What do the axes represent? What are the main features (main sequence, giants, supergiants, white dwarfs)? How do astronomers use the H-R diagram to understand stellar evolution?",
+                        keyPoints: ["Temperature/luminosity axes", "Main sequence band", "Giants/supergiants top right", "White dwarfs bottom left", "Shows evolutionary tracks"],
+                        sampleAnswer: "The H-R diagram plots stars by temperature (x-axis, hot to cool) and luminosity (y-axis, dim to bright). Main features: (1) Main sequence - diagonal band where stars fuse hydrogen (90% of stars). (2) Red giants/supergiants - upper right: cool but very luminous (large). (3) White dwarfs - lower left: hot but dim (small). The H-R diagram reveals stellar evolution: stars form on the main sequence, then evolve off as they exhaust fuel, becoming giants or supergiants, then ending as white dwarfs, neutron stars, or black holes depending on mass."
+                    },
+                    {
+                        question: "Explain how Cepheid variable stars are used as 'standard candles' to measure cosmic distances. What is the period-luminosity relationship, and why was its discovery so important for astronomy?",
+                        keyPoints: ["Cepheids pulsate with regular periods", "Period correlates with intrinsic luminosity", "Compare apparent vs absolute brightness for distance", "Hubble used Cepheids to discover galaxies beyond Milky Way"],
+                        sampleAnswer: "Cepheid variables pulsate with periods of days to months. Henrietta Leavitt discovered the period-luminosity relation: longer period = higher intrinsic luminosity. By measuring a Cepheid's period, we know its absolute magnitude. Comparing to apparent magnitude gives distance via the inverse square law. This was revolutionary: Hubble used Cepheids in Andromeda (1923) to prove it was a separate galaxy far beyond the Milky Way, establishing the scale of the universe and leading to the discovery of cosmic expansion."
+                    }
+                ]
+            }
         };
 
         // Game State
@@ -1054,6 +2147,10 @@
         let score = 0;
         let userAnswers = [];
         let categoryStats = {};
+        let quizMode = 'standard'; // 'standard' or 'random'
+        let questionMode = 'multiple-choice'; // 'multiple-choice', 'multi-select', 'written', 'mixed'
+        let selectedQuestionCount = 10;
+        let isLightMode = false;
 
         // DOM Elements
         const startScreen = document.getElementById('start-screen');
@@ -1061,6 +2158,9 @@
         const resultsScreen = document.getElementById('results-screen');
         const reviewScreen = document.getElementById('review-screen');
         const categoryBtns = document.querySelectorAll('.category-btn');
+        const modeBtns = document.querySelectorAll('.mode-btn');
+        const quizModeBtns = document.querySelectorAll('.quiz-mode-btn');
+        const countBtns = document.querySelectorAll('.count-btn');
         const startBtn = document.getElementById('start-btn');
         const nextBtn = document.getElementById('next-btn');
         const submitBtn = document.getElementById('submit-btn');
@@ -1070,10 +2170,18 @@
         const feedbackText = document.getElementById('feedback-text');
         const questionText = document.getElementById('question-text');
         const questionCategory = document.getElementById('question-category');
+        const questionType = document.getElementById('question-type');
         const currentQ = document.getElementById('current-q');
         const totalQ = document.getElementById('total-q');
         const currentScore = document.getElementById('current-score');
         const progressFill = document.getElementById('progress-fill');
+        const randomCountSelect = document.getElementById('random-count-select');
+        const writtenAnswerSection = document.getElementById('written-answer-section');
+        const writtenAnswerTextarea = document.getElementById('written-answer-textarea');
+        const submitWrittenBtn = document.getElementById('submit-written-btn');
+        const aiFeedback = document.getElementById('ai-feedback');
+        const aiFeedbackContent = document.getElementById('ai-feedback-content');
+        const themeToggle = document.getElementById('theme-toggle');
 
         // Category display names
         const categoryNames = {
@@ -1086,6 +2194,13 @@
             "light-spectrum": "Light & Spectrum",
             "stars-magnitude": "Stars & Magnitude"
         };
+
+        // Theme toggle
+        themeToggle.addEventListener('click', () => {
+            isLightMode = !isLightMode;
+            document.body.classList.toggle('light-mode', isLightMode);
+            themeToggle.textContent = isLightMode ? 'Dark Mode' : 'Light Mode';
+        });
 
         // Initialize category buttons
         categoryBtns.forEach(btn => {
@@ -1103,42 +2218,115 @@
             });
         });
 
+        // Initialize mode buttons
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modeBtns.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                questionMode = btn.dataset.mode;
+            });
+        });
+
+        // Initialize quiz mode buttons
+        quizModeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                quizModeBtns.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                quizMode = btn.dataset.quizMode;
+                randomCountSelect.classList.toggle('visible', quizMode === 'random');
+                updateStartButton();
+            });
+        });
+
+        // Initialize count buttons
+        countBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                countBtns.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedQuestionCount = parseInt(btn.dataset.count);
+            });
+        });
+
         function updateStartButton() {
             if (selectedCategories.length === 0) {
                 startBtn.disabled = true;
                 startBtn.textContent = 'Select at least one category';
+            } else if (quizMode === 'random') {
+                startBtn.disabled = false;
+                startBtn.textContent = `Start Quiz (${selectedQuestionCount} random questions)`;
             } else if (selectedCategories.length === 1) {
                 startBtn.disabled = false;
-                startBtn.textContent = `Start Quiz (${selectedCategories.length} category)`;
+                startBtn.textContent = `Start Quiz (${questionMode})`;
             } else {
                 startBtn.disabled = false;
-                startBtn.textContent = `Start Quiz (${selectedCategories.length} categories)`;
+                startBtn.textContent = `Start Quiz (${selectedCategories.length} categories, ${questionMode})`;
             }
+        }
+
+        // Get question type based on mode
+        function getQuestionType() {
+            if (questionMode === 'mixed') {
+                const types = ['single', 'multi', 'written'];
+                return types[Math.floor(Math.random() * types.length)];
+            }
+            if (questionMode === 'multiple-choice') return 'single';
+            if (questionMode === 'multi-select') return 'multi';
+            if (questionMode === 'written') return 'written';
+            return 'single';
+        }
+
+        function getQuestionTypeLabel(type) {
+            if (type === 'single') return 'Multiple Choice';
+            if (type === 'multi') return 'Select All That Apply';
+            if (type === 'written') return 'Written Practice';
+            return 'Question';
         }
 
         // Start quiz
         startBtn.addEventListener('click', () => {
-            // Gather questions from selected categories
             quizQuestions = [];
             categoryStats = {};
 
-            selectedCategories.forEach(category => {
-                const categoryQuestions = questionsDatabase[category] || [];
-                // Shuffle and select up to 5 questions per category
-                const shuffled = [...categoryQuestions].sort(() => Math.random() - 0.5);
-                const selected = shuffled.slice(0, Math.min(5, shuffled.length));
-
-                selected.forEach(q => {
-                    quizQuestions.push({
-                        ...q,
-                        category: category
+            if (quizMode === 'random') {
+                // Gather random questions from all categories
+                const allQuestions = [];
+                selectedCategories.forEach(category => {
+                    const catQuestions = questionsDatabase[category] || {};
+                    ['single', 'multi', 'written'].forEach(type => {
+                        (catQuestions[type] || []).forEach(q => {
+                            allQuestions.push({
+                                ...q,
+                                category: category,
+                                type: type
+                            });
+                        });
                     });
                     categoryStats[category] = { correct: 0, total: 0 };
                 });
-            });
 
-            // Shuffle all questions
-            quizQuestions.sort(() => Math.random() - 0.5);
+                // Shuffle and select
+                allQuestions.sort(() => Math.random() - 0.5);
+                quizQuestions = allQuestions.slice(0, selectedQuestionCount);
+            } else {
+                // Standard mode - get questions from selected categories
+                selectedCategories.forEach(category => {
+                    const catQuestions = questionsDatabase[category] || {};
+                    const questionType = getQuestionType();
+                    const typeQuestions = catQuestions[questionType] || catQuestions['single'] || [];
+
+                    const shuffled = [...typeQuestions].sort(() => Math.random() - 0.5);
+                    const selected = shuffled.slice(0, Math.min(5, shuffled.length));
+
+                    selected.forEach(q => {
+                        quizQuestions.push({
+                            ...q,
+                            category: category,
+                            type: questionType
+                        });
+                        categoryStats[category] = { correct: 0, total: 0 };
+                    });
+                });
+            }
 
             if (quizQuestions.length === 0) {
                 alert('No questions available for selected categories!');
@@ -1168,6 +2356,7 @@
 
             questionCategory.textContent = categoryNames[question.category] || question.category;
             questionCategory.style.background = getCategoryColor(question.category);
+            questionType.textContent = getQuestionTypeLabel(question.type);
             questionText.textContent = question.question;
 
             // Clear previous options
@@ -1175,22 +2364,55 @@
             feedback.classList.remove('show', 'correct', 'incorrect');
             nextBtn.disabled = true;
 
-            // Create option buttons
-            question.options.forEach((option, index) => {
-                const optionBtn = document.createElement('button');
-                optionBtn.className = 'option';
-                optionBtn.textContent = option;
-                optionBtn.addEventListener('click', () => selectOption(index, optionBtn));
-                optionsContainer.appendChild(optionBtn);
-            });
+            // Hide written answer section by default
+            writtenAnswerSection.style.display = 'none';
+            aiFeedback.classList.remove('show');
 
-            // Show submit button on last question
-            if (currentQuestionIndex === quizQuestions.length - 1) {
+            if (question.type === 'written') {
+                // Show written answer interface
+                writtenAnswerSection.style.display = 'block';
+                writtenAnswerTextarea.value = '';
+                submitWrittenBtn.disabled = false;
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'none';
+            } else if (question.type === 'multi') {
+                // Multi-select question
+                question.selectedAnswers = [];
+                question.answered = false;
+
+                question.options.forEach((option, index) => {
+                    const optionBtn = document.createElement('button');
+                    optionBtn.className = 'option';
+                    optionBtn.textContent = option;
+                    optionBtn.addEventListener('click', () => toggleOption(index, optionBtn, question));
+                    optionsContainer.appendChild(optionBtn);
+                });
+
+                // Show submit button for multi-select
                 nextBtn.style.display = 'none';
                 submitBtn.style.display = 'block';
+                submitBtn.textContent = 'Submit Answer';
+                submitBtn.disabled = false;
+                submitBtn.onclick = () => submitMultiSelect(question);
             } else {
-                nextBtn.style.display = 'block';
-                submitBtn.style.display = 'none';
+                // Single choice question
+                question.options.forEach((option, index) => {
+                    const optionBtn = document.createElement('button');
+                    optionBtn.className = 'option';
+                    optionBtn.textContent = option;
+                    optionBtn.addEventListener('click', () => selectOption(index, optionBtn, question));
+                    optionsContainer.appendChild(optionBtn);
+                });
+
+                // Show submit button on last question
+                if (currentQuestionIndex === quizQuestions.length - 1) {
+                    nextBtn.style.display = 'none';
+                    submitBtn.style.display = 'block';
+                    submitBtn.textContent = 'Finish Quiz';
+                } else {
+                    nextBtn.style.display = 'block';
+                    submitBtn.style.display = 'none';
+                }
             }
         }
 
@@ -1208,19 +2430,16 @@
             return colors[category] || "#e94560";
         }
 
-        function selectOption(selectedIndex, selectedBtn) {
-            // Remove previous selection
+        // Single choice selection
+        function selectOption(selectedIndex, selectedBtn, question) {
             const options = optionsContainer.querySelectorAll('.option');
             options.forEach(opt => opt.classList.remove('selected'));
-
-            // Add selection to clicked option
             selectedBtn.classList.add('selected');
 
             // Disable all options
             options.forEach(opt => opt.style.pointerEvents = 'none');
 
             // Check answer
-            const question = quizQuestions[currentQuestionIndex];
             const isCorrect = selectedIndex === question.correct;
 
             // Mark correct/incorrect
@@ -1243,10 +2462,88 @@
                 question: question,
                 selected: selectedIndex,
                 correct: question.correct,
-                isCorrect: isCorrect
+                isCorrect: isCorrect,
+                type: 'single'
             });
 
             // Show feedback
+            showFeedback(isCorrect, question);
+
+            // Enable next button
+            nextBtn.disabled = false;
+            if (currentQuestionIndex === quizQuestions.length - 1) {
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Multi-select toggle
+        function toggleOption(index, optionBtn, question) {
+            if (question.answered) return;
+
+            if (question.selectedAnswers.includes(index)) {
+                question.selectedAnswers = question.selectedAnswers.filter(i => i !== index);
+                optionBtn.classList.remove('selected');
+            } else {
+                question.selectedAnswers.push(index);
+                optionBtn.classList.add('selected');
+            }
+        }
+
+        // Submit multi-select answer
+        function submitMultiSelect(question) {
+            if (question.selectedAnswers.length === 0) return;
+
+            question.answered = true;
+            const options = optionsContainer.querySelectorAll('.option');
+
+            // Check if all correct answers are selected and no incorrect ones
+            const correctSet = new Set(question.correct);
+            const selectedSet = new Set(question.selectedAnswers);
+            const isCorrect = question.correct.length === question.selectedAnswers.length &&
+                question.correct.every(i => selectedSet.has(i));
+
+            // Mark correct answers
+            question.correct.forEach(i => options[i].classList.add('correct'));
+            if (!isCorrect) {
+                question.selectedAnswers.forEach(i => {
+                    if (!correctSet.has(i)) {
+                        options[i].classList.add('incorrect');
+                    }
+                });
+            }
+
+            // Disable options
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            // Update score and stats
+            categoryStats[question.category].total++;
+            if (isCorrect) {
+                score++;
+                currentScore.textContent = score;
+                categoryStats[question.category].correct++;
+            }
+
+            // Save user answer
+            userAnswers.push({
+                question: question,
+                selected: question.selectedAnswers,
+                correct: question.correct,
+                isCorrect: isCorrect,
+                type: 'multi'
+            });
+
+            // Show feedback
+            showFeedback(isCorrect, question);
+
+            // Enable next button
+            nextBtn.disabled = false;
+            if (currentQuestionIndex === quizQuestions.length - 1) {
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Show feedback
+        function showFeedback(isCorrect, question) {
             feedback.classList.remove('correct', 'incorrect');
             feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
 
@@ -1257,12 +2554,87 @@
             }
 
             feedbackText.textContent = question.explanation;
+        }
 
-            // Enable next button
+        // Submit written answer for AI review
+        submitWrittenBtn.addEventListener('click', async () => {
+            const answer = writtenAnswerTextarea.value.trim();
+            if (!answer.length) return;
+
+            submitWrittenBtn.disabled = true;
+            submitWrittenBtn.textContent = 'Reviewing...';
+
+            const question = quizQuestions[currentQuestionIndex];
+
+            // Generate AI feedback (simulated - in production would call an API)
+            const feedback = generateAIFeedback(question, answer);
+
+            aiFeedbackContent.innerHTML = feedback;
+            aiFeedback.classList.add('show');
+
+            // Save the written answer
+            userAnswers.push({
+                question: question,
+                writtenAnswer: answer,
+                type: 'written'
+            });
+
+            submitWrittenBtn.textContent = 'Answer Submitted';
             nextBtn.disabled = false;
+
+            // Show next button or submit button
             if (currentQuestionIndex === quizQuestions.length - 1) {
-                submitBtn.disabled = false;
+                submitBtn.style.display = 'block';
+                submitBtn.textContent = 'Finish Quiz';
+            } else {
+                nextBtn.style.display = 'block';
             }
+        });
+
+        // Generate AI feedback (simulated)
+        function generateAIFeedback(question, answer) {
+            // Count how many key points are covered
+            const keyPoints = question.keyPoints || [];
+            const answerLower = answer.toLowerCase();
+            let pointsCovered = 0;
+
+            keyPoints.forEach(point => {
+                const pointWords = point.toLowerCase().split(' ');
+                const matches = pointWords.filter(word => word.length > 3 && answerLower.includes(word));
+                if (matches.length >= Math.min(2, pointWords.length)) {
+                    pointsCovered++;
+                }
+            });
+
+            const coveragePercent = keyPoints.length ? Math.round((pointsCovered / keyPoints.length) * 100) : 0;
+
+            // Determine quality
+            let quality = 'Good';
+            let color = '#f39c12';
+            if (coveragePercent >= 80) {
+                quality = 'Excellent';
+                color = '#2ecc71';
+            } else if (coveragePercent < 50) {
+                quality = 'Needs Improvement';
+                color = '#e74c3c';
+            }
+
+            return `
+                <p><strong>Answer Length:</strong> ${answer.length} characters</p>
+                <p><strong>Key Points Coverage:</strong> ${pointsCovered}/${keyPoints.length} points identified</p>
+                <div class="score-breakdown">
+                    <div class="score-item">
+                        <div class="label">Coverage</div>
+                        <div class="value" style="color: ${color}">${coveragePercent}%</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="label">Quality</div>
+                        <div class="value" style="color: ${color}">${quality}</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px;"><strong>Sample Answer:</strong> ${question.sampleAnswer || 'N/A'}</p>
+                <p style="margin-top: 10px;"><strong>Tip:</strong> Make sure to address all key points and provide specific examples where possible.</p>
+            `;
         }
 
         // Next button
@@ -1273,6 +2645,7 @@
 
         // Submit button (finish quiz)
         submitBtn.addEventListener('click', () => {
+            if (submitBtn.textContent === 'Submit Answer') return; // For multi-select
             showResults();
         });
 
@@ -1280,13 +2653,18 @@
             quizScreen.classList.remove('active');
             resultsScreen.classList.add('active');
 
-            const percentage = Math.round((score / quizQuestions.length) * 100);
+            // Count correct answers (exclude written questions from score)
+            const answeredQuestions = userAnswers.filter(a => a.type !== 'written');
+            const correctAnswers = answeredQuestions.filter(a => a.isCorrect).length;
+            const totalAnswered = answeredQuestions.length;
 
-            document.getElementById('final-score-num').textContent = score;
-            document.getElementById('final-score-total').textContent = quizQuestions.length;
+            const percentage = totalAnswered > 0 ? Math.round((correctAnswers / totalAnswered) * 100) : 0;
+
+            document.getElementById('final-score-num').textContent = correctAnswers;
+            document.getElementById('final-score-total').textContent = totalAnswered;
             document.getElementById('final-percentage').textContent = `${percentage}%`;
-            document.getElementById('correct-count').textContent = score;
-            document.getElementById('incorrect-count').textContent = quizQuestions.length - score;
+            document.getElementById('correct-count').textContent = correctAnswers;
+            document.getElementById('incorrect-count').textContent = totalAnswered - correctAnswers;
             document.getElementById('accuracy').textContent = `${percentage}%`;
 
             // Category breakdown
@@ -1317,23 +2695,60 @@
             reviewList.innerHTML = '';
 
             userAnswers.forEach((answer, index) => {
-                const reviewItem = document.createElement('div');
-                reviewItem.className = `review-item ${answer.isCorrect ? 'correct' : 'incorrect'}`;
-
                 const question = answer.question;
-                reviewItem.innerHTML = `
-                    <h4>Question ${index + 1} - ${categoryNames[question.category]}</h4>
-                    <p class="question">${question.options[answer.selected]}</p>
-                    <div class="answer ${answer.isCorrect ? 'correct' : 'incorrect'}">
-                        ${answer.isCorrect ? '✓ Your answer was correct' : '✗ Your answer was incorrect'}
-                    </div>
-                    ${!answer.isCorrect ? `<div class="answer correct">✓ Correct answer: ${question.options[question.correct]}</div>` : ''}
-                    <div class="explanation">
-                        <strong>Explanation:</strong> ${question.explanation}
-                    </div>
-                `;
 
-                reviewList.appendChild(reviewItem);
+                if (answer.type === 'written') {
+                    // Written answer review
+                    const reviewItem = document.createElement('div');
+                    reviewItem.className = 'written-review-item';
+                    reviewItem.innerHTML = `
+                        <h4>Question ${index + 1} - ${categoryNames[question.category]} (Written Practice)</h4>
+                        <p class="question"><strong>Question:</strong> ${question.question}</p>
+                        <div class="your-answer"><strong>Your Answer:</strong><br>${answer.writtenAnswer}</div>
+                        <div class="answer correct"><strong>Sample Answer:</strong><br>${question.sampleAnswer || 'N/A'}</div>
+                        <div class="explanation">
+                            <strong>Key Points to Cover:</strong>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                ${(question.keyPoints || []).map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                    reviewList.appendChild(reviewItem);
+                } else if (answer.type === 'multi') {
+                    // Multi-select review
+                    const reviewItem = document.createElement('div');
+                    reviewItem.className = `review-item ${answer.isCorrect ? 'correct' : 'incorrect'}`;
+
+                    reviewItem.innerHTML = `
+                        <h4>Question ${index + 1} - ${categoryNames[question.category]} (Select All)</h4>
+                        <p class="question">${question.question}</p>
+                        <div class="answer ${answer.isCorrect ? 'correct' : 'incorrect'}">
+                            ${answer.isCorrect ? '✓ All correct answers selected' : '✗ Your answer was incorrect'}
+                        </div>
+                        ${!answer.isCorrect ? `<div class="answer correct">✓ Correct answers: ${question.correct.map(i => question.options[i]).join(', ')}</div>` : ''}
+                        <div class="explanation">
+                            <strong>Explanation:</strong> ${question.explanation}
+                        </div>
+                    `;
+                    reviewList.appendChild(reviewItem);
+                } else {
+                    // Single choice review
+                    const reviewItem = document.createElement('div');
+                    reviewItem.className = `review-item ${answer.isCorrect ? 'correct' : 'incorrect'}`;
+
+                    reviewItem.innerHTML = `
+                        <h4>Question ${index + 1} - ${categoryNames[question.category]}</h4>
+                        <p class="question">${question.options[answer.selected]}</p>
+                        <div class="answer ${answer.isCorrect ? 'correct' : 'incorrect'}">
+                            ${answer.isCorrect ? '✓ Your answer was correct' : '✗ Your answer was incorrect'}
+                        </div>
+                        ${!answer.isCorrect ? `<div class="answer correct">✓ Correct answer: ${question.options[question.correct]}</div>` : ''}
+                        <div class="explanation">
+                            <strong>Explanation:</strong> ${question.explanation}
+                        </div>
+                    `;
+                    reviewList.appendChild(reviewItem);
+                }
             });
         });
 
@@ -1351,12 +2766,8 @@
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (quizScreen.classList.contains('active')) {
-                if (e.key === 'Enter' && !nextBtn.disabled) {
-                    if (currentQuestionIndex === quizQuestions.length - 1 && submitBtn.style.display !== 'none') {
-                        submitBtn.click();
-                    } else {
-                        nextBtn.click();
-                    }
+                if (e.key === 'Enter' && !nextBtn.disabled && nextBtn.style.display !== 'none') {
+                    nextBtn.click();
                 }
             }
         });
