@@ -1101,21 +1101,21 @@
 
     <script>
         // Quiz Questions Database - Based on ASTRO 100G Course Content
-        // Includes: Single choice, Multi-select, and Written practice questions
+        // Aligned with learning goals from readme.txt
         const questionsDatabase = {
             "solar-system": {
                 single: [
                     {
-                        question: "Imagine you are an astronaut on the surface of the moon. How would the Earth appear to you?",
+                        question: "Which of the following best describes the difference between a planet, a star, and a galaxy?",
                         options: [
-                            "It would vary from full to crescent during the course of an Earth day.",
-                            "It would always appear to be approximately full.",
-                            "It would always appear to be a crescent.",
-                            "It would vary from full to crescent during the course of an Earth month.",
-                            "None of the above."
+                            "A planet orbits a star; a star is a luminous ball of gas; a galaxy contains billions of stars",
+                            "A planet is larger than a star; a star is larger than a galaxy",
+                            "A planet produces its own light; a star reflects light; a galaxy is a constellation",
+                            "There is no significant difference between them",
+                            "A planet is a type of galaxy; a star is a type of planet"
                         ],
-                        correct: 3,
-                        explanation: "From the Moon, Earth goes through phases just like the Moon does from Earth. Since the Moon is tidally locked to Earth, an astronaut on the near side would see Earth go through a complete cycle of phases over one lunar month (about 29.5 days)."
+                        correct: 0,
+                        explanation: "A planet orbits a star and doesn't produce its own light. A star is a massive, luminous ball of gas (like the Sun). A galaxy is a vast collection of billions of stars, gas, and dust bound together by gravity."
                     },
                     {
                         question: "It is about 5 light-hours to Pluto. The Voyager spacecraft are about 1 light-day from Earth. The nearest star is roughly 4 light-years away. How much further would Voyager need to travel to reach the nearest star?",
@@ -1154,16 +1154,16 @@
                         explanation: "Earth-Moon distance is about 1.3 light-seconds. Distances between inner planets are measured in light-minutes. Outer planets are light-hours away, and nearest stars are light-years away."
                     },
                     {
-                        question: "If the Sun were the size of a grapefruit (about 10cm diameter), how far away would the nearest star (Proxima Centauri) be?",
+                        question: "What is a light-year?",
                         options: [
-                            "About 100 meters",
-                            "About 1 kilometer",
-                            "About 3000 kilometers",
-                            "About 100 kilometers",
-                            "About 10 kilometers"
+                            "The distance light travels in one year (about 9.46 trillion km)",
+                            "The time it takes light to travel from the Sun to Earth",
+                            "The distance from Earth to the nearest star",
+                            "A measure of brightness for stars",
+                            "The time it takes Earth to orbit the Sun"
                         ],
-                        correct: 2,
-                        explanation: "At this scale, the Sun is 10cm. Proxima Centauri is about 270,000 AU away. At 1 AU = 15m at this scale, Proxima Centauri would be about 4 million meters = 4000 km away, roughly the distance across a continent."
+                        correct: 0,
+                        explanation: "A light-year is a unit of distance, not time. It's the distance light travels in one year at 300,000 km/s - approximately 9.46 trillion kilometers or 63,240 AU."
                     },
                     {
                         question: "How long does it take light to travel from the Sun to Earth?",
@@ -1190,54 +1190,37 @@
                         explanation: "Neptune orbits at about 30 AU from the Sun. The diameter of the solar system to Neptune's orbit is therefore about 60 AU. The heliopause extends further to about 120 AU."
                     },
                     {
-                        question: "Which planet is closest to the Sun?",
+                        question: "Approximately how far is the nearest star (Proxima Centauri) from Earth?",
                         options: [
-                            "Venus",
-                            "Mercury",
-                            "Mars",
-                            "Earth",
-                            "Jupiter"
+                            "4 light-years",
+                            "4 light-hours",
+                            "4 light-days",
+                            "40 light-years",
+                            "0.4 light-years"
                         ],
-                        correct: 1,
-                        explanation: "Mercury is the innermost planet, orbiting at an average distance of about 0.39 AU from the Sun. It completes an orbit in just 88 Earth days."
+                        correct: 0,
+                        explanation: "Proxima Centauri, the nearest star to our Sun, is approximately 4.24 light-years away (about 270,000 AU)."
                     }
                 ],
                 multi: [
                     {
-                        question: "Which of the following statements about the solar system are TRUE? (Select all that apply)",
+                        question: "Which of the following statements about astronomical distances are TRUE? (Select all that apply)",
                         options: [
-                            "Jupiter is the largest planet in our solar system",
-                            "Venus rotates in the opposite direction to most planets",
-                            "Mars has two moons: Phobos and Deimos",
-                            "Saturn is the only planet with rings",
-                            "The asteroid belt lies between Mars and Jupiter"
-                        ],
-                        correct: [0, 1, 2, 4],
-                        explanation: "Jupiter is indeed the largest planet. Venus has retrograde rotation. Mars has two small moons. However, Jupiter, Uranus, and Neptune also have ring systems (though Saturn's are most prominent). The asteroid belt does lie between Mars and Jupiter."
-                    },
-                    {
-                        question: "Which of these are gas giants? (Select all that apply)",
-                        options: [
-                            "Jupiter",
-                            "Saturn",
-                            "Uranus",
-                            "Neptune",
-                            "Pluto"
+                            "A light-year is a measure of distance, not time",
+                            "The solar system is about 60 AU across (to Neptune's orbit)",
+                            "The nearest star is about 4 light-years away",
+                            "Light takes about 8 minutes to travel from the Sun to Earth",
+                            "A constellation is a physical grouping of stars close together in space"
                         ],
                         correct: [0, 1, 2, 3],
-                        explanation: "Jupiter and Saturn are gas giants (mostly hydrogen and helium). Uranus and Neptune are ice giants (more heavy elements). All four are considered 'giant planets' as opposed to terrestrial planets. Pluto is a dwarf planet."
+                        explanation: "Light-year is a distance unit. The solar system to Neptune is ~60 AU across. Proxima Centauri is ~4 light-years away. Sunlight takes ~8 minutes to reach Earth. Constellations are NOT physical groupings - stars appear close from our perspective but may be at vastly different distances."
                     }
                 ],
                 written: [
                     {
-                        question: "Explain why Pluto was reclassified from a planet to a dwarf planet in 2006. What are the three criteria for being a planet, and which one(s) does Pluto fail to meet?",
-                        keyPoints: ["IAU definition requires orbiting Sun, being round, and clearing orbit", "Pluto fails the 'cleared its orbit' criterion", "Pluto shares its orbital zone with other Kuiper Belt objects", "Discovery of Eris prompted the reclassification"],
-                        sampleAnswer: "In 2006, the IAU defined a planet as: (1) orbiting the Sun, (2) being round due to self-gravity, and (3) having cleared its orbital neighborhood. Pluto meets criteria 1 and 2, but fails criterion 3 - it shares its orbital region with many other Kuiper Belt objects. The discovery of Eris, similar in size to Pluto, forced astronomers to either classify many objects as planets or redefine what a planet is."
-                    },
-                    {
-                        question: "Describe the scale of the solar system. If you were to create a scale model where the Sun is the size of a basketball, approximately where would each of the planets be located? Why is this scale important for understanding space exploration?",
-                        keyPoints: ["Demonstrates vast empty space in solar system", "Inner planets relatively close, outer planets very far", "Illustrates challenges of space travel", "Shows why we haven't sent humans beyond the Moon"],
-                        sampleAnswer: "On a basketball-sized Sun scale: Mercury ~25m, Venus ~45m, Earth ~65m, Mars ~100m, Jupiter ~340m, Saturn ~620m, Uranus ~1.2km, Neptune ~1.9km. This shows the solar system is mostly empty space - inner planets fit in a city block, but outer planets require kilometers. This scale explains why space missions take years and why human exploration beyond the Moon is so challenging."
+                        question: "Describe the scale of the universe from the Earth-Moon system to galaxies. Include approximate distances using 'light time' (light-seconds, light-minutes, light-hours, light-years) and explain why these scales matter for understanding space exploration.",
+                        keyPoints: ["Earth-Moon is light-seconds", "Inner planets are light-minutes apart", "Outer planets are light-hours away", "Stars are light-years away", "Galaxies contain billions of stars"],
+                        sampleAnswer: "The universe spans enormous scales: Earth-Moon distance is about 1.3 light-seconds. Distances between inner planets (Mercury, Venus, Earth, Mars) are measured in light-minutes (3-12 minutes). The outer planets (Jupiter, Saturn, Uranus, Neptune) are light-hours away (30 min to 4 hours). The nearest stars are light-years away (Proxima Centauri at 4.24 years). Our Milky Way galaxy is about 100,000 light-years across and contains billions of stars. These scales explain why space exploration is so challenging - even at light speed, reaching other stars would take thousands of years."
                     }
                 ]
             },
@@ -2535,10 +2518,17 @@
             // Show feedback
             showFeedback(isCorrect, question);
 
-            // Enable next button
-            nextBtn.disabled = false;
+            // Hide submit button and show next/finish button
+            submitBtn.style.display = 'none';
+
+            // Enable next button or show finish button
             if (currentQuestionIndex === quizQuestions.length - 1) {
+                submitBtn.style.display = 'block';
+                submitBtn.textContent = 'Finish Quiz';
                 submitBtn.disabled = false;
+            } else {
+                nextBtn.style.display = 'block';
+                nextBtn.disabled = false;
             }
         }
 
@@ -2645,8 +2635,10 @@
 
         // Submit button (finish quiz)
         submitBtn.addEventListener('click', () => {
-            if (submitBtn.textContent === 'Submit Answer') return; // For multi-select
-            showResults();
+            // Only proceed if this is the finish quiz button (not multi-select submit)
+            if (submitBtn.textContent === 'Submit Answer' || submitBtn.textContent === 'Finish Quiz') {
+                showResults();
+            }
         });
 
         function showResults() {
